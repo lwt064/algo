@@ -17,9 +17,11 @@ func sortTest() {
 	for i:=0; i<n; i++ {
 		x = append(x, rand.Intn(n))
 	}
-	x = cmpsort.MergeSort(x)
-	// cmpsort.HeapSort(x)
-	// cmprsort.QuicSort(x)
+	// x = cmpsort.MergeSort(x)
+	// // cmpsort.HeapSort(x)
+	// // cmprsort.QuicSort(x)
+
+	cmpsort.InsertSort(x)
 	for _,v := range x {
 		fmt.Println(v)
 	}
@@ -90,8 +92,8 @@ func linkedlistTest() {
 
 func main () {
 	sortTest()
-	binSearchTest()
-	hashMapTest()
-	arrangeTest()
-	linkedlistTest()
+	// binSearchTest()
+	// hashMapTest()
+	// arrangeTest()
+	// linkedlistTest()
 }
