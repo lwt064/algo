@@ -58,7 +58,7 @@ func (hash *HashMap) AddNode(key string, data interface{}) {
 	length := len(hash.bucket)
 	idx := HashFunc(node.key) % uint64(length)
 
-	// 初始化头结点
+	// 初始化头结点, 头结点为哨兵，不存储数据
 	if hash.bucket[idx] == nil {
 		hash.bucket[idx] = &Node{
 			key:  "",
@@ -147,7 +147,7 @@ func (hash *HashMap) resize() {
 			for node := head.next; node != nil; node = node.next {
 				idx := HashFunc(node.key) % uint64(length)
 
-				// 初始化头结点，头结点不存储数据
+				// 初始化头结点，头结点为哨兵，不存储数据
 				if bucketNew[idx] == nil {
 					bucketNew[idx] = &Node{
 						key:  "",
