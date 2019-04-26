@@ -20,11 +20,13 @@ func sortTest() {
 	// x = cmpsort.MergeSort(x)
 	// // cmpsort.HeapSort(x)
 	// // cmprsort.QuicSort(x)
+	
+	fmt.Println("kth: ", cmpsort.SelectK(x, 18))
 
-	cmpsort.InsertSort(x)
-	for _,v := range x {
-		fmt.Println(v)
-	}
+	// cmpsort.InsertSort(x)
+	// for _,v := range x {
+	// 	fmt.Println(v)
+	// }
 }
 
 func binSearchTest() {

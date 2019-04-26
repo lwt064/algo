@@ -140,3 +140,15 @@ func SelectSort(A []int) {
 		A[max], A[m-i-1] = A[m-i-1], A[max]
 	}
 }
+
+func SelectK(A []int, k int) int {
+	length := len(A)
+	mid := partition(A)
+	if length - mid == k {
+		return A[mid]
+	} else if length - mid > k {
+		return SelectK(A[mid+1:], k)
+	} else {
+		return SelectK(A[:mid], k - (length - mid))
+	}
+}
