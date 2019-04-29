@@ -1,26 +1,27 @@
 package main
 
 import (
-	"math/rand"
 	"algo/bin_search"
 	"algo/cmpsort"
-	"algo/hashmap"
+	hashMap "algo/hashmap"
 	"algo/linkedlist"
 	"algo/recursive/arrange"
+	"algo/skiplist"
 	"fmt"
+	"math/rand"
 	"sort"
 )
 
 func sortTest() {
 	x := make([]int, 0)
 	n := 100
-	for i:=0; i<n; i++ {
+	for i := 0; i < n; i++ {
 		x = append(x, rand.Intn(n))
 	}
 	// x = cmpsort.MergeSort(x)
 	// // cmpsort.HeapSort(x)
 	// // cmprsort.QuicSort(x)
-	
+
 	fmt.Println("kth: ", cmpsort.SelectK(x, 18))
 
 	// cmpsort.InsertSort(x)
@@ -32,7 +33,7 @@ func sortTest() {
 func binSearchTest() {
 	x := make([]int, 0)
 	n := 1000
-	for i:=0; i<n; i++ {
+	for i := 0; i < n; i++ {
 		x = append(x, rand.Intn(n))
 	}
 	sort.Ints(x)
@@ -92,10 +93,43 @@ func linkedlistTest() {
 	linkedlist.Range(head)
 }
 
-func main () {
-	sortTest()
+func skipListTest() {
+	sl := skiplist.NewSkipList()
+	sl.Insert("Winter", 100)
+	sl.Insert("Is", 20)
+	sl.Insert("Comming", 50)
+	sl.Insert("Soon", 30)
+
+	sl.Insert("Winter1", 90)
+	sl.Insert("Is1", 25)
+	sl.Insert("Comming1", 55)
+	sl.Insert("Soon1", 35)
+
+	sl.Insert("Winter2", 70)
+	sl.Insert("Is2", 40)
+	sl.Insert("Comming2", 60)
+	sl.Insert("Soon2", 65)
+
+	sl.Range()
+
+	sl.Delete(25)
+	sl.Delete(30)
+	sl.Delete(40)
+
+	sl.Range()
+
+	sl.Delete(20)
+	sl.Delete(90)
+	sl.Delete(100)
+
+	sl.Range()
+}
+
+func main() {
+	// sortTest()
 	// binSearchTest()
 	// hashMapTest()
 	// arrangeTest()
 	// linkedlistTest()
+	skipListTest()
 }
