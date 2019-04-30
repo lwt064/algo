@@ -2,6 +2,7 @@ package main
 
 import (
 	"algo/bin_search"
+	"algo/bin_search_tree"
 	"algo/cmpsort"
 	hashMap "algo/hashmap"
 	"algo/linkedlist"
@@ -125,11 +126,42 @@ func skipListTest() {
 	sl.Range()
 }
 
+func binSarchTreeTest() {
+	bst := bin_search_tree.NewBST()
+	bst.Insert("Winter", 10)
+	bst.Insert("Is", 20)
+	bst.Insert("Comming", 30)
+	bst.Insert("Soon", 40)
+
+	bst.Insert("Winter1", 11)
+	bst.Insert("Is1", 21)
+	bst.Insert("Comming1", 31)
+	bst.Insert("Soon1", 41)
+
+	bst.Insert("Winter2", 12)
+	bst.Insert("Is2", 22)
+	bst.Insert("Comming2", 32)
+	bst.Insert("Soon2", 42)
+
+	bin_search_tree.PreOrder(bst.Root)
+
+	fmt.Println("Find: ", bst.Find(41))
+	fmt.Println("Min: ", bst.Min())
+	fmt.Println("Max: ", bst.Max())
+
+	bst.Delete(42)
+	bst.Delete(30)
+	bst.Delete(12)
+
+	bin_search_tree.PreOrder(bst.Root)
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
 	// hashMapTest()
 	// arrangeTest()
 	// linkedlistTest()
-	skipListTest()
+	// skipListTest()
+	binSarchTreeTest()
 }
