@@ -7,6 +7,7 @@ import (
 	hashMap "algo/hashmap"
 	"algo/linkedlist"
 	"algo/recursive/arrange"
+	"algo/recursive/cellsplit"
 	"algo/skiplist"
 	"fmt"
 	"math/rand"
@@ -165,11 +166,17 @@ func binSarchTreeTest() {
 	fmt.Println(x)
 }
 
+func cellSplitTest() {
+	fmt.Println(cellsplit.Split1(4))
+	fmt.Println(cellsplit.Split2(4))
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
 	// hashMapTest()
-	arrangeTest()
+	// arrangeTest()
+	cellSplitTest()
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
