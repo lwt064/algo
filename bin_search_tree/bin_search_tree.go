@@ -106,6 +106,7 @@ func (bst *BST) Delete(score int) {
 		}
 		return
 	} else if node.right == nil {
+		// 仅右儿子为空
 		if node == bst.Root {
 			bst.Root = bst.Root.left
 		} else if pNode.left == node {
@@ -115,6 +116,7 @@ func (bst *BST) Delete(score int) {
 		}
 		return
 	} else if node.left == nil {
+		// 仅右儿子为空
 		if node == bst.Root {
 			bst.Root = bst.Root.right
 		} else if pNode.left == node {
@@ -124,6 +126,7 @@ func (bst *BST) Delete(score int) {
 		}
 		return
 	} else {
+		// 左右儿子均不空
 		leftMax := node.left
 		for leftMax.right != nil {
 			pNode = leftMax

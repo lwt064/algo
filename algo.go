@@ -143,6 +143,11 @@ func binSarchTreeTest() {
 	bst.Insert("Comming2", 32)
 	bst.Insert("Soon2", 42)
 
+	bst.Insert("Winter3", 13)
+	bst.Insert("Is3", 23)
+	bst.Insert("Comming3", 33)
+	bst.Insert("Soon3", 43)
+
 	x := make([]string, 0)
 	bin_search_tree.PreOrder(bst.Root, &x)
 	fmt.Println(x)
