@@ -143,7 +143,9 @@ func binSarchTreeTest() {
 	bst.Insert("Comming2", 32)
 	bst.Insert("Soon2", 42)
 
-	bin_search_tree.PreOrder(bst.Root)
+	x := make([]string, 0)
+	bin_search_tree.PreOrder(bst.Root, &x)
+	fmt.Println(x)
 
 	fmt.Println("Find: ", bst.Find(41))
 	fmt.Println("Min: ", bst.Min())
@@ -153,7 +155,9 @@ func binSarchTreeTest() {
 	bst.Delete(30)
 	bst.Delete(12)
 
-	bin_search_tree.PreOrder(bst.Root)
+	x = x[:0]
+	bin_search_tree.PreOrder(bst.Root, &x)
+	fmt.Println(x)
 }
 
 func main() {

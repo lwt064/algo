@@ -1,7 +1,5 @@
 package bin_search_tree
 
-import "fmt"
-
 type Node struct {
 	data  interface{}
 	score int
@@ -169,11 +167,12 @@ func (bst *BST) Max() interface{} {
 	return data
 }
 
-func PreOrder(Root *Node) {
+func PreOrder(Root *Node, x *[]string) {
 	if Root == nil {
 		return
 	}
-	PreOrder(Root.left)
-	fmt.Println(Root.data)
-	PreOrder(Root.right)
+	PreOrder(Root.left, x)
+	*x = append(*x, Root.data.(string))
+	PreOrder(Root.right, x)
+	return
 }
