@@ -84,7 +84,7 @@ func hashMapTest() {
 
 func arrangeTest() {
 	A := []int{1, 2, 3}
-	arrange.Arrange(A, 0, len(A))
+	arrange.Arrange(A, len(A), 0)
 }
 
 func linkedlistTest() {
@@ -169,8 +169,8 @@ func main() {
 	// sortTest()
 	// binSearchTest()
 	// hashMapTest()
-	// arrangeTest()
+	arrangeTest()
 	// linkedlistTest()
 	// skipListTest()
-	binSarchTreeTest()
+	// binSarchTreeTest()
 }
