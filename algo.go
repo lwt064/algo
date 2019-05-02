@@ -218,7 +218,7 @@ func graphTest() {
 		g.PrintPath(prevPath, to)
 	}	
 
-	friends := g.FindNFriends(s, 3)
+	friends := g.FindNFriends(s, 2)
 	fmt.Println(friends)
 }
 
