@@ -10,6 +10,7 @@ import (
 	"algo/recursive/cellsplit"
 	"algo/skiplist"
 	"algo/graph"
+	"algo/graph/maze"
 	"fmt"
 	"math/rand"
 	"sort"
@@ -218,8 +219,16 @@ func graphTest() {
 		g.PrintPath(prevPath, to)
 	}	
 
-	friends := g.FindNFriends(s, 2)
-	fmt.Println(friends)
+	{
+		friends := g.FindNFriends(s, 2)
+		fmt.Println(friends)
+	}
+	
+	{
+		pMaze := maze.NewMaze()
+		prevPath := pMaze.BFS(maze.Point{0, 0}, maze.Point{4, 4})
+		pMaze.PrintPath(prevPath, maze.Point{0, 0}, maze.Point{4, 4})
+	}	
 }
 
 func main() {
