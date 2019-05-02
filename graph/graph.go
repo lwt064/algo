@@ -52,8 +52,7 @@ func (g *Graph) BFS(s int, to int) []int {
 	visited[s] = true
 
 	for q.Length() > 0 {
-		popV := q.DeQueue()
-		v := popV.(int)
+		v := q.DeQueue().(int)
 		cur := g.adj[v].Iter()
 		for cur != nil {
 			adjv := cur.Key.(int)
