@@ -2,6 +2,7 @@ package graph
 
 import "algo/linkedlist"
 import "algo/queue"
+import "fmt"
 
 // 无向带权图的邻接表存储
 type Graph struct {
@@ -147,4 +148,18 @@ func (g *Graph) FindNFriends(s int, n int) []int {
 		g.adj[v].ResetIter()
 	}
 	return friends
+}
+
+func (g *Graph) PrintPath(prevPath []int, to int) {
+	positivePath := []int{to}
+	prev := prevPath[to]
+	for prev != -1 {
+		positivePath = append(positivePath, prev)
+		prev = prevPath[prev]
+	}
+	nPath := len(positivePath)
+	for i:=0; i<nPath/2;i++ {
+		positivePath[i], positivePath[nPath-i-1] = positivePath[nPath-i-1], positivePath[i]
+	}
+	fmt.Println(positivePath)
 }

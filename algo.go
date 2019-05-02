@@ -210,32 +210,12 @@ func graphTest() {
 	
 	{
 		prevPath :=	g.BFS(s, to)
-		positivePath := []int{to}
-		prev := prevPath[to]
-		for prev != -1 {
-			positivePath = append(positivePath, prev)
-			prev = prevPath[prev]
-		}
-		nPath := len(positivePath)
-		for i:=0; i<nPath/2;i++ {
-			positivePath[i], positivePath[nPath-i-1] = positivePath[nPath-i-1], positivePath[i]
-		}
-		fmt.Println(positivePath)
+		g.PrintPath(prevPath, to)
 	}
 
 	{
 		prevPath := g.DFS(s, to)
-		positivePath := []int{to}
-		prev := prevPath[to]
-		for prev != -1 {
-			positivePath = append(positivePath, prev)
-			prev = prevPath[prev]
-		}
-		nPath := len(positivePath)
-		for i:=0; i<nPath/2;i++ {
-			positivePath[i], positivePath[nPath-i-1] = positivePath[nPath-i-1], positivePath[i]
-		}
-		fmt.Println(positivePath)
+		g.PrintPath(prevPath, to)
 	}	
 
 	friends := g.FindNFriends(s, 3)
