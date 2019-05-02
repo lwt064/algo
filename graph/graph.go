@@ -108,6 +108,7 @@ func (g *Graph) recurDFS(s int, to int, visited []bool, prev *[]int, found *bool
 	g.adj[s].ResetIter()
 }
 
+// 查找n度以内的好友
 func (g *Graph) FindNFriends(s int, n int) []int {
 	q := queue.NewLinkedListQueue()
 	q.EnQueue(s)
