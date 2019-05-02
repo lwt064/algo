@@ -209,12 +209,12 @@ func graphTest() {
 	to := 9
 	
 	{
-		path :=	g.BFS(s, to)
+		prevPath :=	g.BFS(s, to)
 		positivePath := []int{to}
-		prev := path[to]
+		prev := prevPath[to]
 		for prev != -1 {
 			positivePath = append(positivePath, prev)
-			prev = path[prev]
+			prev = prevPath[prev]
 		}
 		nPath := len(positivePath)
 		for i:=0; i<nPath/2;i++ {
@@ -222,14 +222,14 @@ func graphTest() {
 		}
 		fmt.Println(positivePath)
 	}
-	
+
 	{
-		path := g.DFS(s, to)
+		prevPath := g.DFS(s, to)
 		positivePath := []int{to}
-		prev := path[to]
+		prev := prevPath[to]
 		for prev != -1 {
 			positivePath = append(positivePath, prev)
-			prev = path[prev]
+			prev = prevPath[prev]
 		}
 		nPath := len(positivePath)
 		for i:=0; i<nPath/2;i++ {
