@@ -107,3 +107,40 @@ func (g *Graph) recurDFS(s int, to int, visited []bool, prev *[]int, found *bool
 	}
 	g.adj[s].ResetIter()
 }
+
+func (g *Graph) FindNFriends(s int, n int) []int {
+	q := queue.NewLinkedListQueue()
+	q.EnQueue(s)
+
+	visited := make([]bool, g.v)
+	dist := make([]int, g.v)
+	for i := 0; i < g.v; i++ {
+		visited[i] = false
+		dist[i] = -1
+	}
+	visited[s] = true
+	dist[s] = 0
+
+	friends := []int{}
+	for q.Length() > 0 {
+		v := q.DeQueue().(int)
+		if dist[v] > n {
+			break
+		}
+		cur := g.adj[v].Iter()
+		for cur != nil {
+			adjv := cur.Key.(int)
+			if !visited[adjv] {
+				dist[adjv] = dist[v] + 1
+				if dist[adjv] <= n {
+					friends = append(friends, adjv)
+				}
+				visited[adjv] = true
+				q.EnQueue(adjv)
+			}
+			cur = g.adj[v].Iter()
+		}
+		g.adj[v].ResetIter()
+	}
+	return friends
+}

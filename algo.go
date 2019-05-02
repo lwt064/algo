@@ -211,6 +211,9 @@ func graphTest() {
 
 	path := g.DFS(1, 9)
 	fmt.Println(path)
+
+	friends := g.FindNFriends(0, 3)
+	fmt.Println(friends)
 }
 
 func main() {
