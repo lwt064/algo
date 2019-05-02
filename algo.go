@@ -9,6 +9,7 @@ import (
 	"algo/recursive/arrange"
 	"algo/recursive/cellsplit"
 	"algo/skiplist"
+	"algo/graph"
 	"fmt"
 	"math/rand"
 	"sort"
@@ -89,18 +90,18 @@ func arrangeTest() {
 }
 
 func linkedlistTest() {
-	l := linkedlist.InitLinkedList()
-	l.Insert(10)
-	l.Insert(9)
-	l.Insert(8)
-	l.Insert(7)
-	l.Insert(6)
-	l.Insert(5)
-	l.Insert(4)
-	l.Insert(3)
-	l.Insert(2)
-	l.Insert(1)
-	l.Insert(0)
+	l := linkedlist.NewLinkedList()
+	l.Insert(10, 10)
+	l.Insert(9, 9)
+	l.Insert(8, 8)
+	l.Insert(7, 7)
+	l.Insert(6, 6) 
+	l.Insert(5, 5)
+	l.Insert(4, 4)
+	l.Insert(3, 3)
+	l.Insert(2, 2)
+	l.Insert(1, 1)
+	l.Insert(0, 0)
 
 	l.Range()
 	l.Reverse()
@@ -189,13 +190,34 @@ func cellSplitTest() {
 	fmt.Println(cellsplit.Split2(4))
 }
 
+func graphTest() {
+	g := graph.NewGraph(10)
+	g.Insert(0, 1, 1)
+	g.Insert(0, 3, 3)
+	g.Insert(1, 4, 5)
+	g.Insert(1, 5, 6)
+	g.Insert(1, 6, 7)
+	g.Insert(2, 3, 4)
+	g.Insert(3, 1, 3)
+	g.Insert(3, 6, 6)
+	g.Insert(5, 7, 7)
+	g.Insert(5, 9, 9)
+	g.Insert(6, 8, 9)
+	g.Insert(7, 8, 7)
+	g.Insert(8, 9, 8)
+	
+	path :=	g.BFS(1, 9)
+	fmt.Println(path)
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
 	// hashMapTest()
 	// arrangeTest()
 	// cellSplitTest()
-	linkedlistTest()
+	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
+	graphTest()
 }
