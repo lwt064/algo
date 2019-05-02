@@ -89,10 +89,28 @@ func arrangeTest() {
 }
 
 func linkedlistTest() {
-	head := linkedlist.InitLinkedList()
-	linkedlist.Range(head)
-	head = linkedlist.Reverse(head)
-	linkedlist.Range(head)
+	l := linkedlist.InitLinkedList()
+	l.Insert(10)
+	l.Insert(9)
+	l.Insert(8)
+	l.Insert(7)
+	l.Insert(6)
+	l.Insert(5)
+	l.Insert(4)
+	l.Insert(3)
+	l.Insert(2)
+	l.Insert(1)
+	l.Insert(0)
+
+	l.Range()
+	l.Reverse()
+	l.Range()
+
+	l.Delete(10)
+	l.Delete(5)
+	l.Delete(0)
+
+	l.Range()
 }
 
 func skipListTest() {
@@ -176,8 +194,8 @@ func main() {
 	// binSearchTest()
 	// hashMapTest()
 	// arrangeTest()
-	cellSplitTest()
-	// linkedlistTest()
+	// cellSplitTest()
+	linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
 }
