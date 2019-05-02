@@ -201,18 +201,44 @@ func graphTest() {
 	g.Insert(3, 1, 3)
 	g.Insert(3, 6, 6)
 	g.Insert(5, 7, 7)
-	g.Insert(5, 9, 9)
 	g.Insert(6, 8, 9)
 	g.Insert(7, 8, 7)
 	g.Insert(8, 9, 8)
 	
-	// path :=	g.BFS(1, 9)
-	// fmt.Println(path)
+	s := 1
+	to := 9
+	
+	{
+		path :=	g.BFS(s, to)
+		positivePath := []int{to}
+		prev := path[to]
+		for prev != -1 {
+			positivePath = append(positivePath, prev)
+			prev = path[prev]
+		}
+		nPath := len(positivePath)
+		for i:=0; i<nPath/2;i++ {
+			positivePath[i], positivePath[nPath-i-1] = positivePath[nPath-i-1], positivePath[i]
+		}
+		fmt.Println(positivePath)
+	}
+	
+	{
+		path := g.DFS(s, to)
+		positivePath := []int{to}
+		prev := path[to]
+		for prev != -1 {
+			positivePath = append(positivePath, prev)
+			prev = path[prev]
+		}
+		nPath := len(positivePath)
+		for i:=0; i<nPath/2;i++ {
+			positivePath[i], positivePath[nPath-i-1] = positivePath[nPath-i-1], positivePath[i]
+		}
+		fmt.Println(positivePath)
+	}	
 
-	path := g.DFS(1, 9)
-	fmt.Println(path)
-
-	friends := g.FindNFriends(0, 3)
+	friends := g.FindNFriends(s, 3)
 	fmt.Println(friends)
 }
 

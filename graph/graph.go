@@ -43,11 +43,12 @@ func (g *Graph) BFS(s int, to int) []int {
 	}
 	q := queue.NewLinkedListQueue()
 	q.EnQueue(s)
-	prev := []int{s}
 
 	visited := make([]bool, g.v)
+	prev := make([]int, g.v)
 	for i := 0; i < g.v; i++ {
 		visited[i] = false
+		prev[i] = -1
 	}
 	visited[s] = true
 
@@ -57,8 +58,9 @@ func (g *Graph) BFS(s int, to int) []int {
 		for cur != nil {
 			adjv := cur.Key.(int)
 			if !visited[adjv] {
-				prev = append(prev, adjv)
+				prev[adjv] = v
 				if adjv == to {
+					g.adj[v].ResetIter()
 					return prev
 				}
 				visited[adjv] = true
@@ -72,10 +74,11 @@ func (g *Graph) BFS(s int, to int) []int {
 }
 
 func (g *Graph) DFS(s int, to int) []int {
-	prev := []int{s}
 	visited := make([]bool, g.v)
+	prev := make([]int, g.v)
 	for i := 0; i < g.v; i++ {
 		visited[i] = false
+		prev[i] = -1
 	}
 	visited[s] = true
 
@@ -100,7 +103,7 @@ func (g *Graph) recurDFS(s int, to int, visited []bool, prev *[]int, found *bool
 	for cur != nil {
 		adjv := cur.Key.(int)
 		if !*found && !visited[adjv] {
-			*prev = append(*prev, adjv)
+			(*prev)[adjv] = s
 			g.recurDFS(adjv, to, visited, prev, found)
 		}
 		cur = g.adj[s].Iter()
