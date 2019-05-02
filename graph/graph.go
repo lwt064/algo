@@ -66,7 +66,7 @@ func (g *Graph) BFS(s int, to int) []int {
 			}
 			cur = g.adj[v].Iter()
 		}
-		g.adj[v].ResetCur()
+		g.adj[v].ResetIter()
 	}
 	return nil
 }

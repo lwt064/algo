@@ -58,7 +58,7 @@ func (l *LinkedList) Iter() *Node {
 	return l.cur
 }
 
-func (l *LinkedList) ResetCur() {
+func (l *LinkedList) ResetIter() {
 	l.cur = l.head
 }
 
