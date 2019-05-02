@@ -206,7 +206,10 @@ func graphTest() {
 	g.Insert(7, 8, 7)
 	g.Insert(8, 9, 8)
 	
-	path :=	g.BFS(1, 9)
+	// path :=	g.BFS(1, 9)
+	// fmt.Println(path)
+
+	path := g.DFS(1, 9)
 	fmt.Println(path)
 }
 

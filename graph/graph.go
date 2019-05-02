@@ -70,3 +70,40 @@ func (g *Graph) BFS(s int, to int) []int {
 	}
 	return nil
 }
+
+func (g *Graph) DFS(s int, to int) []int {
+	prev := []int{s}
+	visited := make([]bool, g.v)
+	for i := 0; i < g.v; i++ {
+		visited[i] = false
+	}
+	visited[s] = true
+
+	found := false
+	g.recurDFS(s, to, visited, &prev, &found)
+	return prev
+}
+
+func (g *Graph) recurDFS(s int, to int, visited []bool, prev *[]int, found *bool) {
+	if *found {
+		return
+	}
+
+	visited[s] = true
+	if s == to {
+		*found = true
+		return
+	}
+
+	// 遍历邻接表
+	cur := g.adj[s].Iter()
+	for cur != nil {
+		adjv := cur.Key.(int)
+		if !*found && !visited[adjv] {
+			*prev = append(*prev, adjv)
+			g.recurDFS(adjv, to, visited, prev, found)
+		}
+		cur = g.adj[s].Iter()
+	}
+	g.adj[s].ResetIter()
+}
