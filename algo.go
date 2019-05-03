@@ -11,6 +11,7 @@ import (
 	"algo/skiplist"
 	"algo/graph"
 	"algo/graph/maze"
+	"algo/stringmatch"
 	"fmt"
 	"math/rand"
 	"sort"
@@ -231,6 +232,13 @@ func graphTest() {
 	}	
 }
 
+func stringMatchTest() {
+	s := "wintercomming"
+	p := "rcom"
+	idx := stringmatch.RKMatch(s, p)
+	fmt.Println(idx)
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
@@ -240,5 +248,6 @@ func main() {
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
-	graphTest()
+	// graphTest()
+	stringMatchTest()
 }
