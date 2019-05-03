@@ -71,25 +71,31 @@ func GenerateGS(p string) ([]int, []bool) {
 	}
 	for i := 0; i < m-1; i++ {  // 求p[0:i+1) 与 p[0:m)的公共后缀
 		j := i
-		for j >= 0 && p[j] == p[m-1-i+j] {
-			suffix[i-j+1] = j   // i-j+1 为公共子串长度
+		k := i-j
+		for j >= 0 && p[j] == p[m-1-k] {
+			suffix[k+1] = j   // k+1 为公共子串长度
 			j--
+			k = i-j
 		}
 		if j < 0 {
-			prefix[i+1] = true 
+			prefix[i+1] = true // i+1 为公共子串长度
 		}
 	}
 	return suffix, prefix
 }
 
+// j是坏字符位置, m为模式串长度
 func moveByGS(j int, m int, suffix []int, prefix []bool) int {
-	k := m - 1 -j
+	k := m - 1 -j  // k 为后缀串长度
+	// 如果后缀串重复出现
 	if suffix[k] != -1 {
 		return j - suffix[k] + 1
 	}
-	// j是坏字符位置，j+1为已匹配后缀串开始位置，j+2为后缀串的子串开始位置
+	// 如果后缀串没有重复出现，则搜索后缀串的子串
+	// j+1为后缀串开始位置，j+2为后缀串的子串开始位置
 	for r := j+2; r <= m-1; r++ {
-		if prefix[m-r] {  // m-r为模式串后缀串子串的长度，prefix[m-r]=true 表示这段子串与前缀串匹配，可以将模式串头部移动到r的位置
+		k2 := m-1-r+1  // k2为子串长度
+		if prefix[k2] { // prefix[k2]=true 表示子串与前缀串匹配，可以将模式串头部移动到r的位置
 			return r
 		}
 	}
@@ -116,8 +122,8 @@ func BMMatch(s string, p string) int {
 		}
 		x := j - bc[int(s[i+j])] // 根据坏字符规则，后移的距离
 		y := 0
-		if j < m-1 {
-			y = moveByGS(j, m, suffix, prefix)
+		if j < m-1 { // 有好后缀
+			y = moveByGS(j, m, suffix, prefix)  // 根据好后缀规则，移动的距离
 		}
 		if x > y {
 			i = i + x
