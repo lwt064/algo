@@ -32,8 +32,7 @@ func (trie *Trie) Insert(s string) {
 		return
 	}
 	cur := trie.root
-	j := 0
-	for cur != nil {
+	for j, _ := range(s) {
 		idx := int(s[j]-'a')
 		if cur.child[idx] == nil {
 			trieNode := NewTrieNode(s[j])
@@ -44,7 +43,6 @@ func (trie *Trie) Insert(s string) {
 			}
 		}
 		cur = cur.child[idx]
-		j++
 	}
 	return
 }
