@@ -248,9 +248,11 @@ func stringMatchTest() {
 		suffix, prefix := stringmatch.GenerateGS(p)
 		fmt.Println(suffix)
 		fmt.Println(prefix)
+	}
 
+	{
 		s := "I ove love you, bless China, blessbless my home."
-		p = "blessbless"
+		p := "blessbless"
 		fmt.Println(stringmatch.BMMatch(s, p))
 	}
 }
