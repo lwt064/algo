@@ -279,6 +279,10 @@ func trieTest() {
 	fmt.Println(trie.Find("say"))
 
 	fmt.Println(trie.FindByPrefix("h"))
+
+	trie.Delete("hi")
+
+	fmt.Println(trie.FindByPrefix("h"))
 }
 
 func main() {

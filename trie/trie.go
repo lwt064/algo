@@ -4,6 +4,7 @@ const MAX_CHAC_NUM = 26
 
 type TrieNode struct {
 	c byte
+	path int
 	child []*TrieNode 
 	isEnd bool
 }
@@ -21,6 +22,7 @@ func NewTrie() *Trie {
 func NewTrieNode(c byte) *TrieNode {
 	trieNode := &TrieNode{
 		c: c,
+		path: 0,
 		child: make([]*TrieNode, MAX_CHAC_NUM),
 		isEnd: false,
 	}
@@ -32,15 +34,41 @@ func (trie *Trie) Insert(s string) {
 		return
 	}
 	cur := trie.root
+	cur.path++
 	for j, _ := range(s) {
 		idx := int(s[j]-'a')
 		if cur.child[idx] == nil {
 			trieNode := NewTrieNode(s[j])
+			trieNode.path++
 			cur.child[idx] = trieNode
 			if j == len(s) - 1 {
 				trieNode.isEnd = true
 				break
 			}
+		} else {
+			cur.child[idx].path++
+		}
+		cur = cur.child[idx]
+	}
+	return
+}
+
+func (trie *Trie) Delete(s string) {
+	if len(s) == 0 {
+		return
+	}
+	found := trie.Find(s)
+	if !found {
+		return
+	}
+	cur := trie.root
+	cur.path--
+	for j, _ := range(s) {
+		idx := int(s[j]-'a')
+		cur.child[idx].path--
+		if cur.child[idx].path == 0 {
+			cur.child[idx] = nil
+			break
 		}
 		cur = cur.child[idx]
 	}
