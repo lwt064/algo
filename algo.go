@@ -12,6 +12,7 @@ import (
 	"algo/graph"
 	"algo/graph/maze"
 	"algo/stringmatch"
+	"algo/trie"
 	"fmt"
 	"math/rand"
 	"sort"
@@ -265,6 +266,21 @@ func stringMatchTest() {
 	}
 }
 
+func trieTest() {
+	trie := trie.NewTrie()
+	trie.Insert("hello")
+	trie.Insert("hi")
+	trie.Insert("how")
+	trie.Insert("see")
+	trie.Insert("so")
+
+	fmt.Println(trie.Find("see"))
+	fmt.Println(trie.Find("hello"))
+	fmt.Println(trie.Find("say"))
+
+	fmt.Println(trie.FindByPrefix("h"))
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
@@ -275,5 +291,6 @@ func main() {
 	// skipListTest()
 	// binSarchTreeTest()
 	// graphTest()
-	stringMatchTest()
+	// stringMatchTest()
+	trieTest()
 }
