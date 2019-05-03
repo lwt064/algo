@@ -241,19 +241,27 @@ func stringMatchTest() {
 	}
 
 	{
-		p := "cabcab"
-		bc := stringmatch.GenerateBC(p)
-		fmt.Println(bc)
+		// p := "cabcab"
+		// bc := stringmatch.GenerateBC(p)
+		// fmt.Println(bc)
 
-		suffix, prefix := stringmatch.GenerateGS(p)
-		fmt.Println(suffix)
-		fmt.Println(prefix)
+		// suffix, prefix := stringmatch.GenerateGS(p)
+		// fmt.Println(suffix)
+		// fmt.Println(prefix)
 	}
 
 	{
 		s := "I ove love you, bless China, blessbless my home."
 		p := "blessbless"
 		fmt.Println(stringmatch.BMMatch(s, p))
+	}
+
+	{
+		p := "ababaca"
+		fmt.Println(stringmatch.GetNext(p))
+
+		s := "ababababadadababacabless"
+		fmt.Println(stringmatch.KMPMatch(s, p))
 	}
 }
 

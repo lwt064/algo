@@ -133,3 +133,40 @@ func BMMatch(s string, p string) int {
 	}
 	return -1
 }
+
+func KMPMatch(s string, p string) int {
+	n := len(s)
+	m := len(p)
+	next := GetNext(p)
+	j := 0
+	for i := 0; i < n; i++ {
+		for j > 0 && s[i] != p[j] {
+			j = next[j-1]
+		}
+		if s[i] == p[j] {
+			j++
+		}
+		if j == m {
+			return i-m+1
+		}
+	}
+	return -1
+}
+
+func GetNext(p string) []int {
+	m := len(p)
+	next := make([]int, m)
+	next[0] = 0
+
+	j := 0
+	for i := 1; i < m; i++ {
+		for j > 0 && p[i] != p[j] {
+			j = next[j-1]
+		}
+		if p[i] == p[j] {
+			j++
+		}
+		next[i] = j
+	}
+	return next
+}
