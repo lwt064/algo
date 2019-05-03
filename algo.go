@@ -233,10 +233,26 @@ func graphTest() {
 }
 
 func stringMatchTest() {
-	s := "wintercomming"
-	p := "rcom"
-	idx := stringmatch.RKMatch(s, p)
-	fmt.Println(idx)
+	{
+		s := "wintercomming"
+		p := "rcom"
+		idx := stringmatch.RKMatch(s, p)
+		fmt.Println(idx)
+	}
+
+	{
+		p := "cabcab"
+		bc := stringmatch.GenerateBC(p)
+		fmt.Println(bc)
+
+		suffix, prefix := stringmatch.GenerateGS(p)
+		fmt.Println(suffix)
+		fmt.Println(prefix)
+
+		s := "I ove love you, bless China, blessbless my home."
+		p = "blessbless"
+		fmt.Println(stringmatch.BMMatch(s, p))
+	}
 }
 
 func main() {
