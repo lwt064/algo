@@ -153,6 +153,7 @@ func KMPMatch(s string, p string) int {
 	return -1
 }
 
+// ababaca
 func GetNext(p string) []int {
 	m := len(p)
 	next := make([]int, m)
