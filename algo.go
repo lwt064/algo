@@ -307,5 +307,5 @@ func main() {
 	// binSarchTreeTest()
 	// graphTest()
 	// stringMatchTest()
-	trieTest()
+	// trieTest()
 }

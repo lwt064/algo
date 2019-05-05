@@ -6,35 +6,35 @@ import "fmt"
 
 // 无向带权图的邻接表存储
 type Graph struct {
-	v int
-	adj []*linkedlist.LinkedList
+	V   int
+	Adj []*linkedlist.LinkedList
 }
 
-func NewGraph(v int) *Graph {
+func NewGraph(V int) *Graph {
 	g := &Graph{
-		v: v,
-		adj: make([]*linkedlist.LinkedList, v),
+		V:   V,
+		Adj: make([]*linkedlist.LinkedList, V),
 	}
-	for i := 0; i < g.v; i++ {
-		g.adj[i] = linkedlist.NewLinkedList()
+	for i := 0; i < g.V; i++ {
+		g.Adj[i] = linkedlist.NewLinkedList()
 	}
 	return g
 }
 
 func (g *Graph) Insert(s int, to int, weight int) {
-	if s >= g.v || to >= g.v {
+	if s >= g.V || to >= g.V {
 		return
 	}
-	g.adj[s].Insert(to, weight)
-	g.adj[to].Insert(s, weight)
+	g.Adj[s].Insert(to, weight)
+	g.Adj[to].Insert(s, weight)
 }
 
 func (g *Graph) Delete(s int, to int) {
-	if s >= g.v || to >= g.v {
+	if s >= g.V || to >= g.V {
 		return
 	}
-	g.adj[s].Delete(to)
-	g.adj[to].Delete(s)
+	g.Adj[s].Delete(to)
+	g.Adj[to].Delete(s)
 }
 
 // 广度优先搜索
@@ -45,39 +45,39 @@ func (g *Graph) BFS(s int, to int) []int {
 	q := queue.NewLinkedListQueue()
 	q.EnQueue(s)
 
-	visited := make([]bool, g.v)
-	prev := make([]int, g.v)
-	for i := 0; i < g.v; i++ {
+	visited := make([]bool, g.V)
+	prev := make([]int, g.V)
+	for i := 0; i < g.V; i++ {
 		visited[i] = false
 		prev[i] = -1
 	}
 	visited[s] = true
 
 	for q.Length() > 0 {
-		v := q.DeQueue().(int)
-		cur := g.adj[v].Iter()
+		V := q.DeQueue().(int)
+		cur := g.Adj[V].Iter()
 		for cur != nil {
 			adjv := cur.Key.(int)
 			if !visited[adjv] {
-				prev[adjv] = v
+				prev[adjv] = V
 				if adjv == to {
-					g.adj[v].ResetIter()
+					g.Adj[V].ResetIter()
 					return prev
 				}
 				visited[adjv] = true
 				q.EnQueue(adjv)
 			}
-			cur = g.adj[v].Iter()
+			cur = g.Adj[V].Iter()
 		}
-		g.adj[v].ResetIter()
+		g.Adj[V].ResetIter()
 	}
 	return nil
 }
 
 func (g *Graph) DFS(s int, to int) []int {
-	visited := make([]bool, g.v)
-	prev := make([]int, g.v)
-	for i := 0; i < g.v; i++ {
+	visited := make([]bool, g.V)
+	prev := make([]int, g.V)
+	for i := 0; i < g.V; i++ {
 		visited[i] = false
 		prev[i] = -1
 	}
@@ -100,16 +100,16 @@ func (g *Graph) recurDFS(s int, to int, visited []bool, prev *[]int, found *bool
 	}
 
 	// 遍历邻接表
-	cur := g.adj[s].Iter()
+	cur := g.Adj[s].Iter()
 	for cur != nil {
 		adjv := cur.Key.(int)
 		if !*found && !visited[adjv] {
 			(*prev)[adjv] = s
 			g.recurDFS(adjv, to, visited, prev, found)
 		}
-		cur = g.adj[s].Iter()
+		cur = g.Adj[s].Iter()
 	}
-	g.adj[s].ResetIter()
+	g.Adj[s].ResetIter()
 }
 
 // 查找n度以内的好友，包含n度
@@ -117,9 +117,9 @@ func (g *Graph) FindNFriends(s int, n int) []int {
 	q := queue.NewLinkedListQueue()
 	q.EnQueue(s)
 
-	visited := make([]bool, g.v)
-	dist := make([]int, g.v)
-	for i := 0; i < g.v; i++ {
+	visited := make([]bool, g.V)
+	dist := make([]int, g.V)
+	for i := 0; i < g.V; i++ {
 		visited[i] = false
 		dist[i] = -1
 	}
@@ -128,24 +128,24 @@ func (g *Graph) FindNFriends(s int, n int) []int {
 
 	friends := []int{}
 	for q.Length() > 0 {
-		v := q.DeQueue().(int)
-		if dist[v] > n {
+		V := q.DeQueue().(int)
+		if dist[V] > n {
 			break
 		}
-		cur := g.adj[v].Iter()
+		cur := g.Adj[V].Iter()
 		for cur != nil {
 			adjv := cur.Key.(int)
 			if !visited[adjv] {
-				dist[adjv] = dist[v] + 1
+				dist[adjv] = dist[V] + 1
 				if dist[adjv] <= n {
 					friends = append(friends, adjv)
 				}
 				visited[adjv] = true
 				q.EnQueue(adjv)
 			}
-			cur = g.adj[v].Iter()
+			cur = g.Adj[V].Iter()
 		}
-		g.adj[v].ResetIter()
+		g.Adj[V].ResetIter()
 	}
 	return friends
 }
@@ -158,7 +158,7 @@ func (g *Graph) PrintPath(prevPath []int, to int) {
 		prev = prevPath[prev]
 	}
 	nPath := len(positivePath)
-	for i:=0; i<nPath/2;i++ {
+	for i := 0; i < nPath/2; i++ {
 		positivePath[i], positivePath[nPath-i-1] = positivePath[nPath-i-1], positivePath[i]
 	}
 	fmt.Println(positivePath)
