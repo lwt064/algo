@@ -1,12 +1,16 @@
 package trie
 
+import "algo/queue"
+
 const MAX_CHAC_NUM = 26
 
 type TrieNode struct {
-	c byte
-	path int
-	child []*TrieNode 
-	isEnd bool
+	c      byte
+	path   int // 经过当前结点的路径数，删除单词时使用
+	length int // 当前结点距root的距离，用来表示单词长度
+	child  []*TrieNode
+	isEnd  bool
+	fail   *TrieNode // 增加ac自动机fail指针
 }
 
 type Trie struct {
@@ -21,10 +25,11 @@ func NewTrie() *Trie {
 
 func NewTrieNode(c byte) *TrieNode {
 	trieNode := &TrieNode{
-		c: c,
-		path: 0,
+		c:     c,
+		path:  0,
 		child: make([]*TrieNode, MAX_CHAC_NUM),
 		isEnd: false,
+		fail:  nil,
 	}
 	return trieNode
 }
@@ -35,13 +40,14 @@ func (trie *Trie) Insert(s string) {
 	}
 	cur := trie.root
 	cur.path++
-	for j, _ := range(s) {
-		idx := int(s[j]-'a')
+	for j, _ := range s {
+		idx := int(s[j] - 'a')
 		if cur.child[idx] == nil {
 			trieNode := NewTrieNode(s[j])
 			trieNode.path++
+			trieNode.length = j + 1
 			cur.child[idx] = trieNode
-			if j == len(s) - 1 {
+			if j == len(s)-1 {
 				trieNode.isEnd = true
 				break
 			}
@@ -63,8 +69,8 @@ func (trie *Trie) Delete(s string) {
 	}
 	cur := trie.root
 	cur.path--
-	for j, _ := range(s) {
-		idx := int(s[j]-'a')
+	for j, _ := range s {
+		idx := int(s[j] - 'a')
 		cur.child[idx].path--
 		if cur.child[idx].path == 0 {
 			cur.child[idx] = nil
@@ -80,8 +86,8 @@ func (trie *Trie) Find(s string) bool {
 		return false
 	}
 	cur := trie.root
-	for j, _ := range(s) {
-		idx := int(s[j]-'a')
+	for j, _ := range s {
+		idx := int(s[j] - 'a')
 		if cur.child[idx] == nil {
 			return false
 		}
@@ -98,8 +104,8 @@ func (trie *Trie) FindByPrefix(s string) []string {
 		return nil
 	}
 	cur := trie.root
-	for j, _ := range(s) {
-		idx := int(s[j]-'a')
+	for j, _ := range s {
+		idx := int(s[j] - 'a')
 		if cur.child[idx] == nil {
 			return nil
 		}
@@ -115,9 +121,68 @@ func getAllWords(node *TrieNode, prefix string, result *[]string) {
 	if node.isEnd {
 		*result = append(*result, prefix)
 	}
-	for _, child := range(node.child) {
+	for _, child := range node.child {
 		if child != nil {
-			getAllWords(child, prefix + string(child.c), result)
+			getAllWords(child, prefix+string(child.c), result)
 		}
 	}
+}
+
+func (trie *Trie) BuildFail() {
+	trie.root.fail = nil
+	tmpQ := queue.NewLinkedListQueue()
+	tmpQ.EnQueue(trie.root)
+
+	for tmpQ.Length() > 0 {
+		p := tmpQ.DeQueue().(*TrieNode)
+		for i := 0; i < MAX_CHAC_NUM; i++ {
+			pc := p.child[i]
+			if pc == nil {
+				continue
+			}
+
+			if p == trie.root {
+				pc.fail = p
+			} else {
+				q := p.fail
+				for q != nil {
+					idx := int(pc.c - 'a')
+					qc := q.child[idx]
+					if qc != nil {
+						pc.fail = qc
+						break
+					}
+					q = q.fail
+				}
+				if q == nil {
+					pc.fail = trie.root
+				}
+			}
+			tmpQ.EnQueue(pc)
+		}
+	}
+}
+
+func (trie *Trie) Match(text string) []string {
+	words := []string{}
+
+	p := trie.root
+	for i, _ := range text {
+		idx := int(text[i] - 'a')
+		for p.child[idx] == nil && p != trie.root {
+			p = p.fail
+		}
+		p = p.child[idx]
+		if p == nil {
+			p = trie.root
+		}
+		tmp := p
+		for tmp != trie.root {
+			if tmp.isEnd {
+				words = append(words, text[i-tmp.length+1:i+1])
+			}
+			tmp = tmp.fail
+		}
+	}
+	return words
 }

@@ -4,13 +4,13 @@ import (
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
+	"algo/graph"
+	"algo/graph/maze"
 	hashMap "algo/hashmap"
 	"algo/linkedlist"
 	"algo/recursive/arrange"
 	"algo/recursive/cellsplit"
 	"algo/skiplist"
-	"algo/graph"
-	"algo/graph/maze"
 	"algo/stringmatch"
 	"algo/trie"
 	"fmt"
@@ -98,7 +98,7 @@ func linkedlistTest() {
 	l.Insert(9, 9)
 	l.Insert(8, 8)
 	l.Insert(7, 7)
-	l.Insert(6, 6) 
+	l.Insert(6, 6)
 	l.Insert(5, 5)
 	l.Insert(4, 4)
 	l.Insert(3, 3)
@@ -207,30 +207,30 @@ func graphTest() {
 	g.Insert(6, 8, 9)
 	g.Insert(7, 8, 7)
 	g.Insert(8, 9, 8)
-	
+
 	s := 1
 	to := 9
-	
+
 	{
-		prevPath :=	g.BFS(s, to)
+		prevPath := g.BFS(s, to)
 		g.PrintPath(prevPath, to)
 	}
 
 	{
 		prevPath := g.DFS(s, to)
 		g.PrintPath(prevPath, to)
-	}	
+	}
 
 	{
 		friends := g.FindNFriends(s, 2)
 		fmt.Println(friends)
 	}
-	
+
 	{
 		pMaze := maze.NewMaze()
 		prevPath := pMaze.BFS(maze.Point{0, 0}, maze.Point{4, 4})
 		pMaze.PrintPath(prevPath, maze.Point{0, 0}, maze.Point{4, 4})
-	}	
+	}
 }
 
 func stringMatchTest() {
@@ -267,22 +267,33 @@ func stringMatchTest() {
 }
 
 func trieTest() {
-	trie := trie.NewTrie()
-	trie.Insert("hello")
-	trie.Insert("hi")
-	trie.Insert("how")
-	trie.Insert("see")
-	trie.Insert("so")
+	{
+		trie := trie.NewTrie()
+		trie.Insert("hello")
+		trie.Insert("hi")
+		trie.Insert("how")
+		trie.Insert("see")
+		trie.Insert("so")
 
-	fmt.Println(trie.Find("see"))
-	fmt.Println(trie.Find("hello"))
-	fmt.Println(trie.Find("say"))
+		fmt.Println(trie.Find("see"))
+		fmt.Println(trie.Find("hello"))
+		fmt.Println(trie.Find("say"))
 
-	fmt.Println(trie.FindByPrefix("h"))
+		fmt.Println(trie.FindByPrefix("h"))
 
-	trie.Delete("hi")
+		trie.Delete("hi")
 
-	fmt.Println(trie.FindByPrefix("h"))
+		fmt.Println(trie.FindByPrefix("h"))
+	}
+
+	{
+		trie := trie.NewTrie()
+		trie.Insert("abcd")
+		trie.Insert("bcd")
+		trie.Insert("c")
+		trie.BuildFail()
+		fmt.Println(trie.Match("bcdcabcd"))
+	}
 }
 
 func main() {
