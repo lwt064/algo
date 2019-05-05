@@ -7,7 +7,7 @@ import "fmt"
 const DIRECTION_SINGLE = 1
 const DIRECTION_BOTH = 2
 
-// 无向带权图的邻接表存储
+// 单向/双向带权图的邻接表存储
 type Graph struct {
 	direction int
 	V         int
