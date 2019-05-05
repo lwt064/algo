@@ -4,16 +4,21 @@ import "algo/linkedlist"
 import "algo/queue"
 import "fmt"
 
+const DIRECTION_SINGLE = 1
+const DIRECTION_BOTH = 2
+
 // 无向带权图的邻接表存储
 type Graph struct {
-	V   int
-	Adj []*linkedlist.LinkedList
+	direction int
+	V         int
+	Adj       []*linkedlist.LinkedList
 }
 
-func NewGraph(V int) *Graph {
+func NewGraph(V int, direction int) *Graph {
 	g := &Graph{
-		V:   V,
-		Adj: make([]*linkedlist.LinkedList, V),
+		direction: direction,
+		V:         V,
+		Adj:       make([]*linkedlist.LinkedList, V),
 	}
 	for i := 0; i < g.V; i++ {
 		g.Adj[i] = linkedlist.NewLinkedList()
@@ -25,16 +30,24 @@ func (g *Graph) Insert(s int, to int, weight int) {
 	if s >= g.V || to >= g.V {
 		return
 	}
-	g.Adj[s].Insert(to, weight)
-	g.Adj[to].Insert(s, weight)
+	if g.direction == DIRECTION_BOTH {
+		g.Adj[s].Insert(to, weight)
+		g.Adj[to].Insert(s, weight)
+	} else {
+		g.Adj[s].Insert(to, weight)
+	}
 }
 
 func (g *Graph) Delete(s int, to int) {
 	if s >= g.V || to >= g.V {
 		return
 	}
-	g.Adj[s].Delete(to)
-	g.Adj[to].Delete(s)
+	if g.direction == DIRECTION_BOTH {
+		g.Adj[s].Delete(to)
+		g.Adj[to].Delete(s)
+	} else {
+		g.Adj[s].Delete(to)
+	}
 }
 
 // 广度优先搜索

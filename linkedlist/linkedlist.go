@@ -3,21 +3,21 @@ package linkedlist
 import "fmt"
 
 type Node struct {
-	Key interface{}
+	Key  interface{}
 	Data interface{}
-	next *Node
+	Next *Node
 }
 
 type LinkedList struct {
 	head *Node
-	cur *Node
+	cur  *Node
 }
 
 func NewNode(Key interface{}, Data interface{}) *Node {
 	return &Node{
-		Key: Key,
+		Key:  Key,
 		Data: Data,
-		next: nil,
+		Next: nil,
 	}
 }
 
@@ -28,32 +28,32 @@ func NewLinkedList() *LinkedList {
 
 func (l *LinkedList) Insert(Key interface{}, Data interface{}) {
 	tail := l.head
-	for tail.next != nil {
-		tail = tail.next
+	for tail.Next != nil {
+		tail = tail.Next
 	}
 	node := NewNode(Key, Data)
-	tail.next = node
+	tail.Next = node
 }
 
 func (l *LinkedList) Delete(Key interface{}) {
 	prev := l.head
-	cur := prev.next
+	cur := prev.Next
 	for cur != nil {
 		if cur.Key == Key {
 			break
 		}
 		prev = cur
-		cur = cur.next
+		cur = cur.Next
 	}
 
 	if cur != nil {
-		prev.next = cur.next
+		prev.Next = cur.Next
 	}
 }
 
 func (l *LinkedList) Iter() *Node {
 	if l.cur != nil {
-		l.cur = l.cur.next
+		l.cur = l.cur.Next
 	}
 	return l.cur
 }
@@ -64,23 +64,23 @@ func (l *LinkedList) ResetIter() {
 
 func (l *LinkedList) Reverse() {
 	head := l.head
-	if head == nil || head.next == nil || head.next.next == nil {
+	if head == nil || head.Next == nil || head.Next.Next == nil {
 		return
 	}
 
-	cur := head.next
-	for cur != nil && cur.next != nil {
-		p := cur.next
-		cur.next = cur.next.next
-		p.next = head.next
-		head.next = p
+	cur := head.Next
+	for cur != nil && cur.Next != nil {
+		p := cur.Next
+		cur.Next = cur.Next.Next
+		p.Next = head.Next
+		head.Next = p
 	}
 	return
 }
 
 func (l *LinkedList) Range() {
 	x := make([]int, 0)
-	for p := l.head.next; p != nil; p = p.next {
+	for p := l.head.Next; p != nil; p = p.Next {
 		x = append(x, p.Data.(int))
 	}
 	fmt.Println(x)

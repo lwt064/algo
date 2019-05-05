@@ -6,6 +6,7 @@ import (
 	"algo/cmpsort"
 	"algo/graph"
 	"algo/graph/maze"
+	"algo/greedy/dijkstra"
 	hashMap "algo/hashmap"
 	"algo/linkedlist"
 	"algo/recursive/arrange"
@@ -194,7 +195,7 @@ func cellSplitTest() {
 }
 
 func graphTest() {
-	g := graph.NewGraph(10)
+	g := graph.NewGraph(10, graph.DIRECTION_BOTH)
 	g.Insert(0, 1, 1)
 	g.Insert(0, 3, 3)
 	g.Insert(1, 4, 5)
@@ -296,6 +297,26 @@ func trieTest() {
 	}
 }
 
+func greedyTest() {
+	g := graph.NewGraph(10, graph.DIRECTION_BOTH)
+	g.Insert(0, 1, 1)
+	g.Insert(0, 3, 3)
+	g.Insert(1, 4, 5)
+	g.Insert(1, 5, 6)
+	g.Insert(1, 6, 7)
+	g.Insert(2, 3, 4)
+	g.Insert(3, 1, 3)
+	g.Insert(3, 6, 6)
+	g.Insert(5, 7, 7)
+	g.Insert(6, 8, 9)
+	g.Insert(7, 8, 7)
+	g.Insert(8, 9, 8)
+
+	dist, prev := dijkstra.MinDist(g, 0)
+	fmt.Println(dist)
+	fmt.Println(prev)
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
@@ -308,4 +329,5 @@ func main() {
 	// graphTest()
 	// stringMatchTest()
 	// trieTest()
+	greedyTest()
 }
