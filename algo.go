@@ -7,6 +7,7 @@ import (
 	"algo/graph"
 	"algo/graph/maze"
 	"algo/greedy/dijkstra"
+	"algo/greedy/prim"
 	hashMap "algo/hashmap"
 	"algo/linkedlist"
 	"algo/recursive/arrange"
@@ -315,6 +316,9 @@ func greedyTest() {
 	dist, prev := dijkstra.MinDist(g, 0)
 	fmt.Println(dist)
 	fmt.Println(prev)
+
+	edgeSet := prim.Prim(g)
+	fmt.Println(edgeSet)
 }
 
 func main() {
