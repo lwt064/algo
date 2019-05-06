@@ -10,27 +10,25 @@ type Edge struct {
 	W int	// weight
 }
 
-func add(s int, arr *[]int) {
-	*arr = append(*arr, s)
-}
-
-func remove(s int, arr *[]int) {
-	i := -1
-	for i, _ = range *arr {
-		if (*arr)[i] == s {
+func extendV(v int, unselected, selected *[]int) {
+	idx := -1
+	for i, _ := range *unselected {
+		if (*unselected)[i] == v {
+			idx = i
 			break
 		}
 	}
-	if i >= 0 {
-		(*arr)[i] = (*arr)[len(*arr) - 1]
-		*arr = (*arr)[0:len(*arr)-1]
+	if idx >= 0 {
+		(*unselected)[idx] = (*unselected)[len(*unselected)-1]
+		*unselected = (*unselected)[0:len(*unselected)-1]
+		*selected = append(*selected, v)
 	}
 }
 
-func IsInSet(s int, arr []int) bool {
+func IsInSet(s int, unselected []int) bool {
 	idx := -1
-	for i, _ := range arr {
-		if arr[i] == s {
+	for i, _ := range unselected {
+		if unselected[i] == s {
 			idx = i
 			break
 		}
@@ -47,8 +45,7 @@ func Prim(g *graph.Graph) []Edge {
 	for i, _ := range g.Adj {
 		unselected[i] = i
 	}
-	add(s, &selected)
-	remove(s, &unselected)
+	extendV(s, &unselected, &selected)
 
 	edgeSet := []Edge{}
 	for {
@@ -75,8 +72,7 @@ func Prim(g *graph.Graph) []Edge {
 			g.Adj[u].ResetIter()
 		}
 		edgeSet = append(edgeSet, edge)
-		add(edge.V, &selected)
-		remove(edge.V, &unselected)
+		extendV(edge.V, &unselected, &selected)
 	}
 	return edgeSet
 }
