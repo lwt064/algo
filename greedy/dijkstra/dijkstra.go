@@ -25,7 +25,7 @@ func MinDist(g *graph.Graph, from int) ([]int, []int) {
 
 		v := unselectedSet[idx]
 
-		// move v from unselectedSet
+		// remove v from unselectedSet
 		unselectedSet[idx] = unselectedSet[len(unselectedSet)-1]
 		unselectedSet = unselectedSet[0 : len(unselectedSet)-1]
 
