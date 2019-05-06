@@ -85,9 +85,9 @@ func FindNearest(points []Point) float64 {
 			kPoints = append(kPoints, p)
 		}
 	}
+
 	k := len(kPoints)   // k个候选点
 	sort.Sort(kPoints)
-	
 	for i := 0; i < k; i++ {
 		x := 0
 		// 只需与对端6个点比较即可
