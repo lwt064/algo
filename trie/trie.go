@@ -128,6 +128,7 @@ func getAllWords(node *TrieNode, prefix string, result *[]string) {
 	}
 }
 
+// ac自动机，构建fail指针
 func (trie *Trie) BuildFail() {
 	trie.root.fail = nil
 	tmpQ := queue.NewLinkedListQueue()
@@ -163,6 +164,7 @@ func (trie *Trie) BuildFail() {
 	}
 }
 
+// ac自动机，多模式匹配
 func (trie *Trie) Match(text string) []string {
 	words := []string{}
 
