@@ -4,6 +4,7 @@ import (
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
+	"algo/dc/bign"
 	"algo/dc/nearpoint"
 	"algo/graph"
 	"algo/graph/maze"
@@ -366,6 +367,27 @@ func dcTest() {
 	}
 	dist := nearpoint.FindNearest(points)
 	fmt.Println(dist)
+
+	{
+		x := bign.BigN{1, "9527"}
+		y := bign.BigN{0, "9528"}
+		z := bign.SmallMultiply(x, y)
+		fmt.Println(z.Data)
+	}
+
+	{
+		x := bign.BigN{1, "987654321"}
+		y := bign.BigN{0, "12345678"}
+		z := bign.Add(x, y)
+		fmt.Println(z.Data)
+	}
+
+	{
+		x := bign.BigN{0, "12345678900"}
+		y := bign.BigN{0, "98765432100"}
+		z := bign.Multiply(x, y)
+		fmt.Println(z.Data)
+	}
 }
 
 func main() {
