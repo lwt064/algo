@@ -9,7 +9,7 @@ type Point struct {
 }
 
 func Dist(p1, p2 Point) float64 {
-	return math.Sqrt(math.Pow(float64(p1.X - p2.X), 2) + math.Pow(float64(p1.Y - p2.Y), 2))
+	return math.Sqrt(math.Pow(float64(p1.X-p2.X), 2) + math.Pow(float64(p1.Y-p2.Y), 2))
 }
 
 type PointSetX []Point
@@ -72,7 +72,7 @@ func FindNearest(points []Point) float64 {
 	}
 	sort.Sort(pointsX)
 	x0 := pointsX[(len(pointsX)-1)/2].X
-	minL := FindNearest(pointsX[0:(len(pointsX)+1)/2])
+	minL := FindNearest(pointsX[0 : (len(pointsX)+1)/2])
 	minR := FindNearest(pointsX[(len(pointsX)+1)/2:])
 	min := minL
 	if minR < min {
@@ -81,17 +81,17 @@ func FindNearest(points []Point) float64 {
 
 	kPoints := make(PointSetY, 0)
 	for _, p := range pointsX {
-		if p.X >= x0 - min && p.X <= x0 + min {
+		if p.X >= x0-min && p.X <= x0+min {
 			kPoints = append(kPoints, p)
 		}
 	}
 
-	k := len(kPoints)   // k个候选点
+	k := len(kPoints) // k个候选点
 	sort.Sort(kPoints)
 	for i := 0; i < k; i++ {
 		x := 0
 		// 只需与对端6个点比较即可
-		for j := i+1; j <= i+6+x; j++ {
+		for j := i + 1; j < k && j <= i+6+x; j++ {
 			if kPoints[j].X < x0 {
 				x++
 				continue

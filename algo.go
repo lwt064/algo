@@ -4,6 +4,7 @@ import (
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
+	"algo/dc/nearpoint"
 	"algo/graph"
 	"algo/graph/maze"
 	"algo/greedy/dijkstra"
@@ -344,6 +345,29 @@ func greedyTest() {
 	}
 }
 
+// devide and conquer test
+func dcTest() {
+	points := []nearpoint.Point{
+		nearpoint.Point{9.83, -81.96},
+		nearpoint.Point{-88.29, 44.76},
+		nearpoint.Point{21.97, -81.49},
+		nearpoint.Point{2.44, -1.83},
+		nearpoint.Point{-89.17, 63.58},
+		nearpoint.Point{20, -49.92},
+		nearpoint.Point{-81.21, -48.01},
+		nearpoint.Point{-33.28, -49.09},
+		nearpoint.Point{-54.05, 12.88},
+		nearpoint.Point{-64.85, -53.12},
+		nearpoint.Point{12.07, 64.91},
+		nearpoint.Point{-72.9, -21.57},
+		nearpoint.Point{12.93, -92.71},
+		nearpoint.Point{-27.71, -0.19},
+		nearpoint.Point{73.17, 31.17},
+	}
+	dist := nearpoint.FindNearest(points)
+	fmt.Println(dist)
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
@@ -356,5 +380,6 @@ func main() {
 	// graphTest()
 	// stringMatchTest()
 	// trieTest()
-	greedyTest()
+	// greedyTest()
+	dcTest()
 }
