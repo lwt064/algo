@@ -3,22 +3,32 @@ package selectk
 import "sort"
 
 func Partition(S *[][]int, mid int) {
+	pivot := -1
+	for k, x := range *S {
+		if x[len(x)/2] == mid {
+			pivot = k
+		}
+	}
+	(*S)[len(*S)-1], (*S)[pivot] = (*S)[pivot], (*S)[len(*S)-1]
+
 	i := 0
-	j := len(*S) - 1
-	for i <= j {
+	j := len(*S) - 2
+	for {
 		for i < len(*S) && (*S)[i][len((*S)[i])/2] <= mid {
 			i++
 		}
 		for j >= 0 && (*S)[j][len((*S)[j])/2] > mid {
 			j--
 		}
-		if i >= j {
+		if i > j {
 			break
 		}
 		(*S)[i], (*S)[j] = (*S)[j], (*S)[i]
 		i++
 		j--
 	}
+
+	(*S)[j+1], (*S)[len(*S)-1] = (*S)[len(*S)-1], (*S)[j+1]
 }
 
 // A左闭右开
