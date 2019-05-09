@@ -6,6 +6,7 @@ import (
 	"algo/cmpsort"
 	"algo/dc/bign"
 	"algo/dc/nearpoint"
+	"algo/dc/selectk"
 	"algo/graph"
 	"algo/graph/maze"
 	"algo/greedy/dijkstra"
@@ -387,6 +388,20 @@ func dcTest() {
 		y := bign.BigN{0, "98765432100"}
 		z := bign.Multiply(x, y)
 		fmt.Println(z.Data)
+	}
+
+	{
+		num := 1000
+		A := make([]int, num)
+		for i := 0; i < num; i++ {
+			A[i] = rand.Intn(num)
+		}
+
+		k := 37
+		fmt.Println(selectk.SelectK(A, k))
+
+		sort.Ints(A)
+		fmt.Println(A[len(A)-k])
 	}
 }
 
