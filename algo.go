@@ -1,6 +1,7 @@
 package main
 
 import (
+	"algo/backtracing/nqueen"
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
@@ -405,6 +406,10 @@ func dcTest() {
 	}
 }
 
+func btTest() {
+	fmt.Println(nqueen.Resolve(8))
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
@@ -418,5 +423,6 @@ func main() {
 	// stringMatchTest()
 	// trieTest()
 	// greedyTest()
-	dcTest()
+	// dcTest()
+	btTest()
 }
