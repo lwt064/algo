@@ -2,7 +2,7 @@ package main
 
 import (
 	"algo/backtracing/nqueen"
-	"algo/backtracing/zeroonebag"
+	"algo/backtracing/bag01"
 	// "algo/backtracing/arrange"
 	"algo/backtracing/tsp"
 	"algo/bin_search"
@@ -411,7 +411,7 @@ func btTest() {
 	{
 		w := 25
 		b := []int{3,4,9,12,6,3}
-		fmt.Println(zeroonebag.Resolve(w, b))
+		fmt.Println(bag01.Resolve(w, b))
 	}
 
 	// {

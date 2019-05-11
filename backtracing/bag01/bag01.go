@@ -1,4 +1,4 @@
-package zeroonebag
+package bag01
 
 func Resolve(w int, b []int) (int, []int) {
 	max := 0
