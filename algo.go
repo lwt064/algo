@@ -2,6 +2,7 @@ package main
 
 import (
 	"algo/backtracing/nqueen"
+	"algo/backtracing/zeroonebag"
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
@@ -408,6 +409,12 @@ func dcTest() {
 
 func btTest() {
 	fmt.Println(nqueen.Resolve(8))
+
+	{
+		w := 17
+		b := []int{3,4,9,12,6,3}
+		fmt.Println(zeroonebag.Resolve(w, b))
+	}
 }
 
 func main() {
