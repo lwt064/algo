@@ -411,7 +411,7 @@ func btTest() {
 	fmt.Println(nqueen.Resolve(8))
 
 	{
-		w := 17
+		w := 25
 		b := []int{3,4,9,12,6,3}
 		fmt.Println(zeroonebag.Resolve(w, b))
 	}
