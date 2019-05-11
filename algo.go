@@ -3,7 +3,8 @@ package main
 import (
 	"algo/backtracing/nqueen"
 	"algo/backtracing/zeroonebag"
-	"algo/backtracing/arrange"
+	// "algo/backtracing/arrange"
+	"algo/backtracing/tsp"
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
@@ -403,17 +404,47 @@ func dcTest() {
 }
 
 func btTest() {
-	fmt.Println(nqueen.Resolve(8))
-
+	{
+		fmt.Println(nqueen.Resolve(8))
+	}
+	
 	{
 		w := 25
 		b := []int{3,4,9,12,6,3}
 		fmt.Println(zeroonebag.Resolve(w, b))
 	}
 
+	// {
+	// 	data := []int{1,2,3,4}
+	// 	arrange.Arrange(data, 0)
+	// }
+	
 	{
-		data := []int{1,2,3,4}
-		arrange.Arrange(data, 0)
+		g := graph.NewGraph(5, graph.DIRECTION_BOTH)
+		g.Insert(0, 1, 10)
+		g.Insert(0, 3, 4)
+		g.Insert(0, 4, 12)
+		g.Insert(1, 3, 8)
+		g.Insert(1, 4, 5)
+		g.Insert(1, 2, 15)
+		g.Insert(2, 4, 30)
+		g.Insert(2, 3, 7)
+		g.Insert(3, 4, 6)
+
+		s := 0
+		city := []int{s}
+		for i := 0; i < g.V; i++ {
+			if s != i {
+				city = append(city, i)
+			}
+		}
+
+		curcost := 0
+		best := graph.MAXDIST
+		bestpath := make([]int, len(city))
+		tsp.TSP(g, s, city, 1, curcost, &best, &bestpath)
+		fmt.Println(best)
+		fmt.Println(bestpath)
 	}
 }
 

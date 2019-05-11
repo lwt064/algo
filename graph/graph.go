@@ -7,11 +7,14 @@ import "fmt"
 const DIRECTION_SINGLE = 1
 const DIRECTION_BOTH = 2
 
+const MAXDIST = 99999999
+
 // 单向/双向带权图的邻接表存储
 type Graph struct {
 	direction int
 	V         int
-	Adj       []*linkedlist.LinkedList
+	Adj       []*linkedlist.LinkedList		// 邻接表
+	Matrix    [][]int						// 临接矩阵
 }
 
 func NewGraph(V int, direction int) *Graph {
@@ -19,9 +22,14 @@ func NewGraph(V int, direction int) *Graph {
 		direction: direction,
 		V:         V,
 		Adj:       make([]*linkedlist.LinkedList, V),
+		Matrix:    make([][]int, V),
 	}
 	for i := 0; i < g.V; i++ {
 		g.Adj[i] = linkedlist.NewLinkedList()
+		g.Matrix[i] = make([]int, V)
+		for j, _ := range g.Matrix[i] {
+			g.Matrix[i][j] = MAXDIST
+		}
 	}
 	return g
 }
@@ -33,8 +41,11 @@ func (g *Graph) Insert(s int, to int, weight int) {
 	if g.direction == DIRECTION_BOTH {
 		g.Adj[s].Insert(to, weight)
 		g.Adj[to].Insert(s, weight)
+		g.Matrix[s][to] = weight
+		g.Matrix[to][s] = weight
 	} else {
 		g.Adj[s].Insert(to, weight)
+		g.Matrix[s][to] = weight
 	}
 }
 
@@ -45,8 +56,11 @@ func (g *Graph) Delete(s int, to int) {
 	if g.direction == DIRECTION_BOTH {
 		g.Adj[s].Delete(to)
 		g.Adj[to].Delete(s)
+		g.Matrix[s][to] = MAXDIST
+		g.Matrix[to][s] = MAXDIST
 	} else {
 		g.Adj[s].Delete(to)
+		g.Matrix[s][to] = MAXDIST
 	}
 }
 
