@@ -3,6 +3,7 @@ package main
 import (
 	"algo/backtracing/nqueen"
 	"algo/backtracing/zeroonebag"
+	"algo/backtracing/arrange"
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
@@ -16,7 +17,6 @@ import (
 	"algo/greedy/prim"
 	hashMap "algo/hashmap"
 	"algo/linkedlist"
-	"algo/recursive/arrange"
 	"algo/recursive/cellsplit"
 	"algo/skiplist"
 	"algo/stringmatch"
@@ -93,11 +93,6 @@ func hashMapTest() {
 
 	fmt.Println("\nAfter Resize: ")
 	hmap.Range()
-}
-
-func arrangeTest() {
-	A := []int{1, 2, 3}
-	arrange.Arrange(A, len(A), 0)
 }
 
 func linkedlistTest() {
@@ -414,6 +409,11 @@ func btTest() {
 		w := 25
 		b := []int{3,4,9,12,6,3}
 		fmt.Println(zeroonebag.Resolve(w, b))
+	}
+
+	{
+		data := []int{1,2,3,4}
+		arrange.Arrange(data, 0)
 	}
 }
 
