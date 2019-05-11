@@ -5,6 +5,7 @@ import (
 	"algo/backtracing/bag01"
 	// "algo/backtracing/arrange"
 	"algo/backtracing/tsp"
+	"algo/backtracing/colorgraph"
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
@@ -445,6 +446,22 @@ func btTest() {
 		tsp.TSP(g, s, city, 1, curcost, &best, &bestpath)
 		fmt.Println(best)
 		fmt.Println(bestpath)
+	}
+
+	{
+		g := graph.NewGraph(5, graph.DIRECTION_BOTH)
+		g.Insert(0, 1, 10)
+		g.Insert(0, 3, 4)
+		g.Insert(0, 4, 12)
+		g.Insert(1, 3, 8)
+		g.Insert(1, 4, 5)
+		g.Insert(1, 2, 15)
+		g.Insert(2, 4, 30)
+		g.Insert(2, 3, 7)
+		g.Insert(3, 4, 6)
+
+		color := make([]int, g.V)
+		colorgraph.Color(g, 4, 0, color)
 	}
 }
 
