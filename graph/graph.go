@@ -9,12 +9,12 @@ const DIRECTION_BOTH = 2
 
 const MAXDIST = 99999999
 
-// 单向/双向带权图的邻接表存储
+// 单向/双向带权图的邻接表/邻接矩阵存储
 type Graph struct {
 	direction int
 	V         int
 	Adj       []*linkedlist.LinkedList		// 邻接表
-	Matrix    [][]int						// 临接矩阵
+	Matrix    [][]int						// 邻接矩阵
 }
 
 func NewGraph(V int, direction int) *Graph {
