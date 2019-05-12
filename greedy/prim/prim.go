@@ -71,8 +71,8 @@ func Prim(g *graph.Graph) []Edge {
 			}
 			g.Adj[u].ResetIter()
 		}
-		edgeSet = append(edgeSet, edge)
 		extendV(edge.V, &unselected, &selected)
+		edgeSet = append(edgeSet, edge)
 	}
 	return edgeSet
 }
