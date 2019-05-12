@@ -1,7 +1,7 @@
 package nqueen
 
 import "math"
-import "fmt"
+// import "fmt"
 
 func Resolve(n int) int {
 	pos := make([]int, n)
@@ -12,7 +12,7 @@ func Resolve(n int) int {
 
 func Place(row int, maxrow int, pos *[]int, path *int) {
 	if row == maxrow {
-		fmt.Println(*pos)
+		// fmt.Println(*pos)
 		*path++
 		return
 	}

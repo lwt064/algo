@@ -1,7 +1,7 @@
 package tsp
 
 import "algo/graph"
-import "fmt"
+// import "fmt"
 
 // g 临接矩阵
 // city 除起点外的城市集合
@@ -15,8 +15,8 @@ func TSP(g *graph.Graph, s int, city []int, k int, curcost int, best *int, bestp
 				sum += g.Matrix[city[i]][city[i+1]]
 			}
 			sum += g.Matrix[city[i]][s]
-			fmt.Println(sum)
-			fmt.Println(city)
+			// fmt.Println(sum)
+			// fmt.Println(city)
 			if sum < *best {
 				*best = sum
 				for j := 0; j < len(city); j++ {
