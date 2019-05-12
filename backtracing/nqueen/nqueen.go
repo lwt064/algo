@@ -1,6 +1,7 @@
 package nqueen
 
 import "math"
+import "fmt"
 
 func Resolve(n int) int {
 	pos := make([]int, n)
@@ -11,14 +12,16 @@ func Resolve(n int) int {
 
 func Place(row int, maxrow int, pos *[]int, path *int) {
 	if row == maxrow {
-		// fmt.Println(*pos)
+		fmt.Println(*pos)
 		*path++
 		return
 	}
-	for j := 0; j < maxrow; j++ {
+	maxcol := maxrow
+	for j := 0; j < maxcol; j++ {   // 每行有 maxcol 种放法
 		if IsOk(row, j, *pos) {
 			(*pos)[row] = j
 			Place(row+1, maxrow, pos, path)
+			(*pos)[row] = 0			// 可以不要，因为下一次调用会覆盖
 		}
 	}
 }
