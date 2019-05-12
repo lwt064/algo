@@ -222,8 +222,13 @@ func graphTest() {
 	}
 
 	{
-		prevPath := g.DFS(s, to)
+		prevPath := g.DFSSearch(s, to)
 		g.PrintPath(prevPath, to)
+	}
+
+	{
+		prevPath := g.DFSTravel(s)
+		fmt.Println(prevPath)
 	}
 
 	{
@@ -474,10 +479,10 @@ func main() {
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
-	// graphTest()
+	graphTest()
 	// stringMatchTest()
 	// trieTest()
 	// greedyTest()
 	// dcTest()
-	btTest()
+	// btTest()
 }

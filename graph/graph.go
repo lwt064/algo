@@ -101,7 +101,7 @@ func (g *Graph) BFS(s int, to int) []int {
 	return nil
 }
 
-func (g *Graph) DFS(s int, to int) []int {
+func (g *Graph) DFSSearch(s int, to int) []int {
 	visited := make([]bool, g.V)
 	prev := make([]int, g.V)
 	for i := 0; i < g.V; i++ {
@@ -111,11 +111,11 @@ func (g *Graph) DFS(s int, to int) []int {
 	visited[s] = true
 
 	found := false
-	g.recurDFS(s, to, visited, &prev, &found)
+	g.recurDFSSearch(s, to, visited, &prev, &found)
 	return prev
 }
 
-func (g *Graph) recurDFS(s int, to int, visited []bool, prev *[]int, found *bool) {
+func (g *Graph) recurDFSSearch(s int, to int, visited []bool, prev *[]int, found *bool) {
 	if *found {
 		return
 	}
@@ -132,7 +132,47 @@ func (g *Graph) recurDFS(s int, to int, visited []bool, prev *[]int, found *bool
 		adjv := cur.Key.(int)
 		if !*found && !visited[adjv] {
 			(*prev)[adjv] = s
-			g.recurDFS(adjv, to, visited, prev, found)
+			g.recurDFSSearch(adjv, to, visited, prev, found)
+		}
+		cur = g.Adj[s].Iter()
+	}
+	g.Adj[s].ResetIter()
+}
+
+func (g *Graph) DFSTravel(s int) []int {
+	visited := make([]bool, g.V)
+	prev := make([]int, g.V)
+	for i := 0; i < g.V; i++ {
+		visited[i] = false
+		prev[i] = -1
+	}
+	visited[s] = true
+
+	g.recurDFSTravel(s, visited, &prev)
+	return prev
+}
+
+func (g *Graph) recurDFSTravel(s int, visited []bool, prev *[]int) {
+	visited[s] = true
+
+	finish := true
+	for _, x := range visited {
+		if !x {
+			finish = false
+			break
+		}
+	}
+	if finish {
+		return
+	}
+
+	// 遍历邻接表
+	cur := g.Adj[s].Iter()
+	for cur != nil {
+		adjv := cur.Key.(int)
+		if !visited[adjv] {
+			(*prev)[adjv] = s
+			g.recurDFSTravel(adjv, visited, prev)
 		}
 		cur = g.Adj[s].Iter()
 	}
