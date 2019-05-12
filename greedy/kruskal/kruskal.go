@@ -23,6 +23,7 @@ func (s EdgeSet) Less(i, j int) bool {
 	return s[i].W < s[j].W
 }
 
+// 寻找根节点，如果两个顶点联通，那么他们的根节点相等
 func ffind(fa []int, x int) int {
 	if fa[x] == x {
 		return x
@@ -53,7 +54,7 @@ func Kruskal(g *graph.Graph) EdgeSet {
 	for _, edge := range es {
 		u := edge.U
 		v := edge.V
-		if ffind(fa, u) != ffind(fa, v) {
+		if ffind(fa, u) != ffind(fa, v) {	// 顶点联通性计算
 			result = append(result, edge)
 			if len(es) == g.V-1 {
 				break
