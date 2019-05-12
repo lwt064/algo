@@ -34,7 +34,7 @@ func Search(w int, b []int, cur int, max *int, selected *[]int, bestselected *[]
 	for _, x := range *selected {
 		sum += x
 	}
-	if sum + b[cur] <= w {
+	if sum + b[cur] <= w {			// 放当前物品，剪枝回溯
 		(*selected)[cur] = b[cur]
 		Search(w, b, cur+1, max, selected, bestselected)
 	}
