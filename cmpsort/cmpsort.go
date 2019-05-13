@@ -1,25 +1,25 @@
 package cmpsort
 
-func MergeSort(A []int) []int{
+func MergeSort(A []int) []int {
 	if len(A) < 2 {
 		return A
 	}
-	mid := len(A)/2
+	mid := len(A) / 2
 	left := MergeSort(A[:mid])
 	right := MergeSort(A[mid:])
 	return merge(left, right)
 }
 
-func merge(left []int, right []int) []int{
+func merge(left []int, right []int) []int {
 	i, j := 0, 0
 	result := make([]int, 0)
-	for ; i < len(left) && j < len(right); {
+	for i < len(left) && j < len(right) {
 		if left[i] <= right[j] {
 			result = append(result, left[i])
-			i = i+1
+			i = i + 1
 		} else {
 			result = append(result, right[j])
-			j = j+1
+			j = j + 1
 		}
 	}
 
@@ -36,12 +36,12 @@ func HeapSort(A []int) {
 	if len(A) < 2 {
 		return
 	}
-	s := len(A)/2
-	for ; s >=0 ; s-- {
+	s := len(A) / 2
+	for ; s >= 0; s-- {
 		siftDown(A, s, len(A))
 	}
 
-	for i := len(A)-1; i>=0; i-- {
+	for i := len(A) - 1; i >= 0; i-- {
 		A[0], A[i] = A[i], A[0]
 		siftDown(A, 0, i)
 	}
@@ -50,7 +50,7 @@ func HeapSort(A []int) {
 func siftDown(A []int, s int, length int) {
 	dad := s
 	son := 2*s + 1
-	for ; son < length; {
+	for son < length {
 		if son+1 < length && A[son] < A[son+1] {
 			son = son + 1
 		}
@@ -73,22 +73,21 @@ func QuicSort(A []int) {
 	QuicSort(A[mid+1:])
 }
 
-
 func partition(A []int) int {
-	if len(A) < 2{
+	if len(A) < 2 {
 		return 0
 	}
 	e := len(A) - 1
 	pivot := A[e]
 	i, j := 0, 0
-	for ; j < e ; j++ {
-		if A[j] < pivot {
+	for ; i < e; i++ {
+		if A[i] < pivot {
 			A[i], A[j] = A[j], A[i]
-			i = i+1
+			j++
 		}
 	}
-	A[i], A[e] = A[e], A[i]
-	return i
+	A[j], A[e] = A[e], A[j]
+	return j
 }
 
 func InsertSort(A []int) {
@@ -97,10 +96,10 @@ func InsertSort(A []int) {
 		return
 	}
 
-	for i:=1; i<m; i++ {
+	for i := 1; i < m; i++ {
 		tmp := A[i]
-		j := i-1
-		for ; j>=0; j-- {
+		j := i - 1
+		for ; j >= 0; j-- {
 			if tmp < A[j] {
 				A[j+1] = A[j]
 			} else {
@@ -116,8 +115,8 @@ func BubbleSort(A []int) {
 	if m <= 1 {
 		return
 	}
-	for i:=0;i<m;i++ {
-		for j:=0; j<m-i-1;j++ {
+	for i := 0; i < m; i++ {
+		for j := 0; j < m-i-1; j++ {
 			if A[j] > A[j+1] {
 				A[j], A[j+1] = A[j+1], A[j]
 			}
@@ -130,9 +129,9 @@ func SelectSort(A []int) {
 	if m <= 1 {
 		return
 	}
-	for i:=0;i<m;i++ {
+	for i := 0; i < m; i++ {
 		max := 0
-		for j:=0; j<m-i;j++ {
+		for j := 0; j < m-i; j++ {
 			if A[j] > A[max] {
 				max = j
 			}
@@ -144,11 +143,11 @@ func SelectSort(A []int) {
 func SelectK(A []int, k int) int {
 	length := len(A)
 	mid := partition(A)
-	if length - mid == k {
+	if length-mid == k {
 		return A[mid]
-	} else if length - mid > k {
+	} else if length-mid > k {
 		return SelectK(A[mid+1:], k)
 	} else {
-		return SelectK(A[:mid], k - (length - mid))
+		return SelectK(A[:mid], k-(length-mid))
 	}
 }

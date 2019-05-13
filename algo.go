@@ -37,14 +37,14 @@ func sortTest() {
 	}
 	// x = cmpsort.MergeSort(x)
 	// // cmpsort.HeapSort(x)
-	// // cmprsort.QuicSort(x)
+	cmpsort.QuicSort(x)
 
 	fmt.Println("kth: ", cmpsort.SelectK(x, 18))
 
 	// cmpsort.InsertSort(x)
-	// for _,v := range x {
-	// 	fmt.Println(v)
-	// }
+	for _, v := range x {
+		fmt.Println(v)
+	}
 }
 
 func binSearchTest() {
@@ -472,7 +472,7 @@ func btTest() {
 }
 
 func main() {
-	// sortTest()
+	sortTest()
 	// binSearchTest()
 	// hashMapTest()
 	// arrangeTest()
