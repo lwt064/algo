@@ -1,11 +1,12 @@
 package main
 
 import (
-	"algo/backtracing/nqueen"
 	"algo/backtracing/bag01"
+	"algo/backtracing/nqueen"
+
 	// "algo/backtracing/arrange"
-	"algo/backtracing/tsp"
 	"algo/backtracing/colorgraph"
+	"algo/backtracing/tsp"
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
@@ -401,7 +402,7 @@ func dcTest() {
 			A[i] = rand.Intn(num)
 		}
 
-		k := 37
+		k := 46
 		fmt.Println(selectk.SelectK(A, k))
 
 		sort.Ints(A)
@@ -413,10 +414,10 @@ func btTest() {
 	{
 		fmt.Println(nqueen.Resolve(8))
 	}
-	
+
 	{
 		w := 25
-		b := []int{3,4,9,12,6,3}
+		b := []int{3, 4, 9, 12, 6, 3}
 		fmt.Println(bag01.Resolve(w, b))
 	}
 
@@ -424,7 +425,7 @@ func btTest() {
 	// 	data := []int{1,2,3,4}
 	// 	arrange.Arrange(data, 0)
 	// }
-	
+
 	{
 		g := graph.NewGraph(5, graph.DIRECTION_BOTH)
 		g.Insert(0, 1, 10)
@@ -479,10 +480,10 @@ func main() {
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
-	graphTest()
+	// graphTest()
 	// stringMatchTest()
 	// trieTest()
 	// greedyTest()
-	// dcTest()
+	dcTest()
 	// btTest()
 }
