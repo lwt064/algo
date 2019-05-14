@@ -12,6 +12,7 @@ import (
 	"algo/devideconquer/bign"
 	"algo/devideconquer/nearpoint"
 	"algo/devideconquer/selectk"
+	"algo/dynamicprogramming/dpbag01"
 	"algo/graph"
 	"algo/graph/maze"
 	"algo/greedy/dijkstra"
@@ -470,6 +471,13 @@ func btTest() {
 	}
 }
 
+func dpTest() {
+	{
+		dpbag01.InitBag()
+		fmt.Println(dpbag01.Bag01())
+	}
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
@@ -479,10 +487,11 @@ func main() {
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
-	graphTest()
+	// graphTest()
 	// stringMatchTest()
 	// trieTest()
 	// greedyTest()
 	// dcTest()
 	// btTest()
+	dpTest()
 }
