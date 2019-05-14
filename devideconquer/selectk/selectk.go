@@ -11,24 +11,14 @@ func Partition(S *[][]int, mid int) {
 	}
 	(*S)[len(*S)-1], (*S)[pivot] = (*S)[pivot], (*S)[len(*S)-1]
 
-	i := 0
-	j := len(*S) - 2
-	for {
-		for i < len(*S) && (*S)[i][len((*S)[i])/2] <= mid {
-			i++
+	i, j := 0, 0
+	for ; i < len(*S)-1; i++ {
+		if (*S)[i][len((*S)[i])/2] < mid {
+			(*S)[i], (*S)[j] = (*S)[j], (*S)[i]
+			j++
 		}
-		for j >= 0 && (*S)[j][len((*S)[j])/2] > mid {
-			j--
-		}
-		if i > j {
-			break
-		}
-		(*S)[i], (*S)[j] = (*S)[j], (*S)[i]
-		i++
-		j--
 	}
-
-	(*S)[j+1], (*S)[len(*S)-1] = (*S)[len(*S)-1], (*S)[j+1]
+	(*S)[j], (*S)[len(*S)-1] = (*S)[len(*S)-1], (*S)[j]
 }
 
 // A左闭右开
