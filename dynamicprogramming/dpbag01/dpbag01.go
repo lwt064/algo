@@ -48,6 +48,7 @@ func InitBag() {
 // 	return maxv
 // }
 
+// 二维数组转一维数组
 func Bag01() int {
 	state := make([]int, w+1)
 	for j, _ := range state {
