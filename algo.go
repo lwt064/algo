@@ -13,6 +13,7 @@ import (
 	"algo/devideconquer/bign"
 	"algo/devideconquer/nearpoint"
 	"algo/devideconquer/selectk"
+	"algo/dynamicprogramming/arraymaxsum"
 	"algo/dynamicprogramming/coin"
 	"algo/dynamicprogramming/dpbag01"
 	"algo/dynamicprogramming/yanghui"
@@ -485,6 +486,10 @@ func dpTest() {
 	{
 		fmt.Println(coin.DpCoin())
 	}
+	{
+		fmt.Println(arraymaxsum.DpArrayMaxSum2())
+	}
+
 }
 
 func main() {
