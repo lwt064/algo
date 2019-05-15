@@ -13,7 +13,10 @@ import (
 	"algo/devideconquer/bign"
 	"algo/devideconquer/nearpoint"
 	"algo/devideconquer/selectk"
+	"algo/dynamicprogramming/arraymaxsum"
+	"algo/dynamicprogramming/coin"
 	"algo/dynamicprogramming/dpbag01"
+	"algo/dynamicprogramming/yanghui"
 	"algo/graph"
 	"algo/graph/maze"
 	"algo/greedy/dijkstra"
@@ -475,8 +478,18 @@ func btTest() {
 func dpTest() {
 	{
 		dpbag01.InitBag()
-		fmt.Println(dpbag01.Bag01())
+		fmt.Println(dpbag01.Bag01_2())
 	}
+	{
+		fmt.Println(yanghui.DpYanghui())
+	}
+	{
+		fmt.Println(coin.DpCoin())
+	}
+	{
+		fmt.Println(arraymaxsum.DpArrayMaxSum2())
+	}
+
 }
 
 func main() {
@@ -492,7 +505,7 @@ func main() {
 	// stringMatchTest()
 	// trieTest()
 	// greedyTest()
-	dcTest()
+	// dcTest()
 	// btTest()
 	dpTest()
 }
