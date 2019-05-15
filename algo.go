@@ -18,6 +18,8 @@ import (
 	"algo/dynamicprogramming/coin"
 	"algo/dynamicprogramming/dpbag01"
 	"algo/dynamicprogramming/yanghui"
+	"algo/dynamicprogramming/dpeditdist"
+	"algo/dynamicprogramming/lcs"
 	"algo/graph"
 	"algo/graph/maze"
 	"algo/greedy/dijkstra"
@@ -495,7 +497,12 @@ func dpTest() {
 	{
 		fmt.Println(arraymaxsum.DpArrayMaxSum2())
 	}
-
+	{
+		fmt.Println(dpeditdist.DpEditDist())
+	}
+	{
+		fmt.Println(lcs.LCS())
+	}
 }
 
 func main() {
@@ -512,6 +519,6 @@ func main() {
 	// trieTest()
 	// greedyTest()
 	// dcTest()
-	btTest()
-	// dpTest()
+	// btTest()
+	dpTest()
 }

@@ -8,14 +8,6 @@ var (
 	MinDist = 99999999
 )
 
-func min(a, b int) int {
-	if a >= b {
-		return b
-	} else {
-		return a
-	}
-}
-
 func EditDist(i int, j int, dist int) {
 	if i == aLen || j == bLen {
 		if j < bLen {
