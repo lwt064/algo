@@ -13,6 +13,7 @@ import (
 	"algo/devideconquer/bign"
 	"algo/devideconquer/nearpoint"
 	"algo/devideconquer/selectk"
+	"algo/dynamicprogramming/coin"
 	"algo/dynamicprogramming/dpbag01"
 	"algo/dynamicprogramming/yanghui"
 	"algo/graph"
@@ -480,6 +481,9 @@ func dpTest() {
 	}
 	{
 		fmt.Println(yanghui.DpYanghui())
+	}
+	{
+		fmt.Println(coin.DpCoin())
 	}
 }
 
