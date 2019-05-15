@@ -10,7 +10,7 @@ var (
 func InitBag() {
 	b = []int{5, 4, 7, 2, 6}
 	v = []int{12, 3, 10, 3, 6}
-	k = 5
+	k = len(b)
 	w = 15
 }
 

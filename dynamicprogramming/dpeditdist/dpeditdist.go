@@ -2,9 +2,9 @@ package dpeditdist
 
 var (
 	a = "mitcmu"
-	aLen = 6
+	aLen = len(a)
 	b = "mtacnu"
-	bLen = 6
+	bLen = len(b)
 	MinDist = 99999999
 )
 

@@ -2,7 +2,7 @@ package lis
 
 var (
 	a = []int{2,9,3,6,5,1,7}
-	aLen = 7
+	aLen = len(a)
 )
 
 func max(a, b int) int {
