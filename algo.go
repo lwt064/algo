@@ -20,6 +20,7 @@ import (
 	"algo/dynamicprogramming/yanghui"
 	"algo/dynamicprogramming/dpeditdist"
 	"algo/dynamicprogramming/lcs"
+	"algo/dynamicprogramming/lis"
 	"algo/graph"
 	"algo/graph/maze"
 	"algo/greedy/dijkstra"
@@ -502,6 +503,9 @@ func dpTest() {
 	}
 	{
 		fmt.Println(lcs.LCS())
+	}
+	{
+		fmt.Println(lis.LIS())
 	}
 }
 
