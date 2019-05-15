@@ -7,6 +7,7 @@ import (
 	// "algo/backtracing/arrange"
 	"algo/backtracing/colorgraph"
 	"algo/backtracing/tsp"
+	"algo/backtracing/editdist"
 	"algo/bin_search"
 	"algo/bin_search_tree"
 	"algo/cmpsort"
@@ -473,6 +474,11 @@ func btTest() {
 		color := make([]int, g.V)
 		colorgraph.Color(g, 4, 0, color)
 	}
+
+	{
+		editdist.EditDist(0, 0, 0)
+		fmt.Println(editdist.MinDist)
+	}
 }
 
 func dpTest() {
@@ -506,6 +512,6 @@ func main() {
 	// trieTest()
 	// greedyTest()
 	// dcTest()
-	// btTest()
-	dpTest()
+	btTest()
+	// dpTest()
 }
