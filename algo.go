@@ -27,6 +27,7 @@ import (
 	"algo/greedy/prim"
 	hashMap "algo/hashmap"
 	"algo/linkedlist"
+	"algo/queue/circlequeue"
 	"algo/recursive/cellsplit"
 	"algo/skiplist"
 	"algo/stringmatch"
@@ -519,6 +520,19 @@ func dpTest() {
 	}
 }
 
+func queueTest() {
+	q := circlequeue.NewQueue(3)
+	q.EnQueue(1)
+	q.EnQueue(2)
+	q.EnQueue(3)
+	q.EnQueue(4)
+
+	for q.Length() > 0 {
+		v := q.DeQueue()
+		fmt.Println(v)
+	}
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
@@ -528,7 +542,7 @@ func main() {
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
-	treeTest()
+	// treeTest()
 	// graphTest()
 	// stringMatchTest()
 	// trieTest()
@@ -536,4 +550,5 @@ func main() {
 	// dcTest()
 	// btTest()
 	// dpTest()
+	queueTest()
 }
