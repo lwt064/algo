@@ -32,7 +32,7 @@ import (
 	"algo/stringmatch"
 	"algo/tree"
 	"algo/tree/bin_search_tree"
-	"algo/trie"
+	"algo/tree/trie"
 	"fmt"
 	"math/rand"
 	"sort"
