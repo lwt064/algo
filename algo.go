@@ -213,6 +213,8 @@ func treeTest() {
 	fmt.Println(t.PreOrder())
 
 	fmt.Println(t.InOrder())
+
+	fmt.Println(t.PostOrder())
 }
 
 func graphTest() {
@@ -526,8 +528,8 @@ func main() {
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
-	// treeTest()
-	graphTest()
+	treeTest()
+	// graphTest()
 	// stringMatchTest()
 	// trieTest()
 	// greedyTest()

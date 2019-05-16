@@ -36,17 +36,15 @@ func InitTree() *Tree {
 	p6 := NewTreeNode(6)
 	p7 := NewTreeNode(7)
 	p8 := NewTreeNode(8)
-	p9 := NewTreeNode(9)
 
 	t.root = p1
 	p1.left = p2
 	p1.right = p3
 	p2.left = p4
-	p2.right = p5
-	p3.right = p6
-	p4.left = p7
-	p5.left = p8
-	p5.right = p9
+	p3.right = p5
+	p4.right = p6
+	p6.left = p7
+	p6.right = p8
 
 	return t
 }
@@ -96,6 +94,36 @@ func (t *Tree) InOrder() []interface{} {
 			p = s.Top().(*TreeNode)
 			visited = append(visited, p.data)
 			s.Pop()
+			p = p.right
+		}
+	}
+
+	return visited
+}
+
+func (t *Tree) PostOrder() []interface{} {
+	root := t.root
+	if root == nil {
+		return nil
+	}
+
+	visited := []interface{}{}
+
+	s := stack.NewStack()
+	p := root
+	lastVisit := p
+	for !s.Empty() || p != nil {
+		for p != nil {
+			s.Push(p)
+			p = p.left
+		}
+		p = s.Top().(*TreeNode)
+		if p.right == nil || p.right == lastVisit {
+			visited = append(visited, p.data)
+			s.Pop()
+			lastVisit = p
+			p = nil
+		} else {
 			p = p.right
 		}
 	}
