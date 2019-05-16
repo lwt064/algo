@@ -5,39 +5,47 @@ import "fmt"
 type ListNode struct {
 	Val  interface{}
 	next *ListNode
+	prev *ListNode
 }
 
 type LinkedListQueue struct {
-	head   *ListNode
+	head   *ListNode // 头哨兵
+	tail   *ListNode // 尾哨兵
 	length int
 }
 
 func NewLinkedListQueue() *LinkedListQueue {
-	head := &ListNode{nil, nil}
-	return &LinkedListQueue{head, 0}
+	head := &ListNode{nil, nil, nil}
+	tail := &ListNode{nil, nil, nil}
+	head.next = tail
+	tail.prev = head
+	return &LinkedListQueue{head, tail, 0}
 }
 
 func (q *LinkedListQueue) EnQueue(v interface{}) {
-	node := &ListNode{v, nil}
+	node := &ListNode{v, nil, nil}
+
 	node.next = q.head.next
+	q.head.next.prev = node
 	q.head.next = node
+	node.prev = q.head
+
 	q.length++
 }
 
 func (q *LinkedListQueue) DeQueue() interface{} {
-	if q.head == nil || q.head.next == nil {
+	if q.head.next == q.tail {
 		return nil
 	}
-	prev := q.head
-	tail := prev.next
-	for tail != nil && tail.next != nil {
-		prev = tail
-		tail = tail.next
-	}
 
-	prev.next = nil
+	node := q.tail.prev
+	prev := node.prev
+	prev.next = q.tail
+	q.tail.prev = prev
+
 	q.length--
-	return tail.Val
+
+	return node.Val
 }
 
 func (q *LinkedListQueue) Length() int {
