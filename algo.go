@@ -6,10 +6,9 @@ import (
 
 	// "algo/backtracing/arrange"
 	"algo/backtracing/colorgraph"
-	"algo/backtracing/tsp"
 	"algo/backtracing/editdist"
+	"algo/backtracing/tsp"
 	"algo/bin_search"
-	"algo/bin_search_tree"
 	"algo/cmpsort"
 	"algo/devideconquer/bign"
 	"algo/devideconquer/nearpoint"
@@ -17,10 +16,10 @@ import (
 	"algo/dynamicprogramming/arraymaxsum"
 	"algo/dynamicprogramming/coin"
 	"algo/dynamicprogramming/dpbag01"
-	"algo/dynamicprogramming/yanghui"
 	"algo/dynamicprogramming/dpeditdist"
 	"algo/dynamicprogramming/lcs"
 	"algo/dynamicprogramming/lis"
+	"algo/dynamicprogramming/yanghui"
 	"algo/graph"
 	"algo/graph/maze"
 	"algo/greedy/dijkstra"
@@ -28,10 +27,13 @@ import (
 	"algo/greedy/prim"
 	hashMap "algo/hashmap"
 	"algo/linkedlist"
+	"algo/queue/circlequeue"
 	"algo/recursive/cellsplit"
 	"algo/skiplist"
 	"algo/stringmatch"
-	"algo/trie"
+	"algo/tree"
+	"algo/tree/bin_search_tree"
+	"algo/tree/trie"
 	"fmt"
 	"math/rand"
 	"sort"
@@ -205,6 +207,15 @@ func binSarchTreeTest() {
 func cellSplitTest() {
 	fmt.Println(cellsplit.Split1(4))
 	fmt.Println(cellsplit.Split2(4))
+}
+
+func treeTest() {
+	t := tree.InitTree()
+	fmt.Println(t.PreOrder())
+
+	fmt.Println(t.InOrder())
+
+	fmt.Println(t.PostOrder())
 }
 
 func graphTest() {
@@ -509,8 +520,21 @@ func dpTest() {
 	}
 }
 
+func queueTest() {
+	q := circlequeue.NewQueue(3)
+	q.EnQueue(1)
+	q.EnQueue(2)
+	q.EnQueue(3)
+	q.EnQueue(4)
+
+	for q.Length() > 0 {
+		v := q.DeQueue()
+		fmt.Println(v)
+	}
+}
+
 func main() {
-	sortTest()
+	// sortTest()
 	// binSearchTest()
 	// hashMapTest()
 	// arrangeTest()
@@ -518,6 +542,7 @@ func main() {
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
+	// treeTest()
 	// graphTest()
 	// stringMatchTest()
 	// trieTest()
@@ -525,4 +550,8 @@ func main() {
 	// dcTest()
 	// btTest()
 	// dpTest()
+<<<<<<< HEAD
+=======
+	queueTest()
+>>>>>>> b06667898552c927574435fb44edaa0adaaa8e4d
 }
