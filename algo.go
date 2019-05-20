@@ -39,7 +39,7 @@ import (
 
 func sortTest() {
 	x := make([]int, 0)
-	n := 100
+	n := 1000
 	for i := 0; i < n; i++ {
 		x = append(x, rand.Intn(n))
 	}
@@ -524,5 +524,5 @@ func main() {
 	// greedyTest()
 	// dcTest()
 	// btTest()
-	dpTest()
+	// dpTest()
 }

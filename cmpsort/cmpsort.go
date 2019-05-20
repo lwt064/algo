@@ -68,7 +68,7 @@ func QuicSort(A []int) {
 	if len(A) < 2 {
 		return
 	}
-	mid := partition2(A)
+	mid := partition3(A)
 	QuicSort(A[:mid])
 	QuicSort(A[mid+1:])
 }
@@ -117,6 +117,29 @@ func partition2(A []int) int {
 	}
 	A[i] = pivot // 终止时，i == j
 	return i
+}
+
+func partition3(A []int) int {
+	if len(A) < 2 {
+		return 0
+	}
+	e := len(A) - 1
+	pivot := A[0]
+
+	i, j := 1, e
+	for i <= j {
+		for i <= j && A[j] > pivot {
+			j--
+		}
+		for i <= j && A[i] <= pivot {
+			i++
+		}
+		if i < j {
+			A[i], A[j] = A[j], A[i]
+		}
+	}
+	A[j], A[0] = A[0], A[j]
+	return j
 }
 
 func InsertSort(A []int) {
