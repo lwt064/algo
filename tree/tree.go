@@ -1,6 +1,9 @@
 package tree
 
-import "algo/stack"
+import (
+	"algo/stack"
+	"fmt"
+)
 
 type TreeNode struct {
 	data  interface{}
@@ -187,4 +190,91 @@ func IsSymmetricCore(n1 *TreeNode, n2 *TreeNode) bool {
 		return false
 	}
 	return IsSymmetricCore(n1.left, n2.right) && IsSymmetricCore(n1.right, n2.left)
+}
+
+func InitSearchTree() *Tree {
+	t := NewTree()
+	p1 := NewTreeNode(1)
+	p2 := NewTreeNode(2)
+	p3 := NewTreeNode(3)
+	p4 := NewTreeNode(4)
+	p5 := NewTreeNode(5)
+	p6 := NewTreeNode(6)
+	p7 := NewTreeNode(7)
+	p8 := NewTreeNode(8)
+
+	t.Root = p4
+	p4.left = p2
+	p4.right = p5
+	p2.left = p1
+	p2.right = p3
+	p5.right = p7
+	p7.left = p6
+	p7.right = p8
+
+	return t
+}
+
+func Tree2List(root *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	tail := Tree2ListCore(root.left, true)
+	if tail != nil {
+		tail.right = root
+		root.left = tail
+	}
+	head := Tree2ListCore(root.right, false)
+	if head != nil {
+		root.right = head
+		head.left = root
+	}
+
+	cur := root
+	for cur.left != nil {
+		cur = cur.left
+	}
+	return cur
+}
+
+func Tree2ListCore(root *TreeNode, isLeft bool) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.left == nil && root.right == nil {
+		return root
+	}
+
+	tail := Tree2ListCore(root.left, true)
+	if tail != nil {
+		tail.right = root
+		root.left = tail
+	}
+
+	head := Tree2ListCore(root.right, false)
+	if head != nil {
+		root.right = head
+		head.left = root
+	}
+
+	cur := root
+	if isLeft { // return tail
+		for cur.right != nil {
+			cur = cur.right
+		}
+	} else { // return head
+		for cur.left != nil {
+			cur = cur.left
+		}
+	}
+	return cur
+}
+
+func PrintTree2List(head *TreeNode) {
+	x := []interface{}{}
+	for head != nil {
+		x = append(x, head.data)
+		head = head.right
+	}
+	fmt.Println(x)
 }

@@ -210,17 +210,26 @@ func cellSplitTest() {
 }
 
 func treeTest() {
-	t := tree.InitTree()
-	fmt.Println(t.PreOrder())
+	{
+		t := tree.InitTree()
+		fmt.Println(t.PreOrder())
 
-	fmt.Println(t.InOrder())
+		fmt.Println(t.InOrder())
 
-	fmt.Println(t.PostOrder())
+		fmt.Println(t.PostOrder())
 
-	tree.Mirror(t.Root)
-	// t.Root = n
+		tree.Mirror(t.Root)
+		// t.Root = n
 
-	fmt.Println(t.PreOrder())
+		fmt.Println(t.PreOrder())
+	}
+
+	{
+		t := tree.InitSearchTree()
+		head := tree.Tree2List(t.Root)
+		tree.PrintTree2List(head)
+	}
+
 }
 
 func graphTest() {
