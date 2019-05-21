@@ -130,3 +130,31 @@ func (t *Tree) PostOrder() []interface{} {
 
 	return visited
 }
+
+func HasSubTree(r1 *TreeNode, r2 *TreeNode) bool {
+	if r1 == nil || r2 == nil {
+		return false
+	}
+
+	result := false
+	if r1.data == r2.data {
+		result = IsSame(r1, r2)
+	}
+	if result {
+		return true
+	}
+	return HasSubTree(r1.left, r2) || HasSubTree(r1.right, r2)
+}
+
+func IsSame(n1 *TreeNode, n2 *TreeNode) bool {
+	if n2 == nil {
+		return true
+	} else if n1 == nil {
+		return false
+	}
+
+	if n1.data != n2.data {
+		return false
+	}
+	return IsSame(n1.left, n2.left) && IsSame(n1.right, n2.right)
+}
