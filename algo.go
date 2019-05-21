@@ -216,6 +216,11 @@ func treeTest() {
 	fmt.Println(t.InOrder())
 
 	fmt.Println(t.PostOrder())
+
+	tree.Mirror(t.Root)
+	// t.Root = n
+
+	fmt.Println(t.PreOrder())
 }
 
 func graphTest() {
@@ -542,7 +547,7 @@ func main() {
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
-	// treeTest()
+	treeTest()
 	// graphTest()
 	// stringMatchTest()
 	// trieTest()
@@ -550,8 +555,6 @@ func main() {
 	// dcTest()
 	// btTest()
 	// dpTest()
-<<<<<<< HEAD
-=======
-	queueTest()
->>>>>>> b06667898552c927574435fb44edaa0adaaa8e4d
+
+	// queueTest()
 }

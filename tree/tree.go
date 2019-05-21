@@ -9,12 +9,12 @@ type TreeNode struct {
 }
 
 type Tree struct {
-	root *TreeNode
+	Root *TreeNode
 }
 
 func NewTree() *Tree {
 	treeNode := NewTreeNode(nil)
-	return &Tree{root: treeNode}
+	return &Tree{Root: treeNode}
 }
 
 func NewTreeNode(d interface{}) *TreeNode {
@@ -37,7 +37,7 @@ func InitTree() *Tree {
 	p7 := NewTreeNode(7)
 	p8 := NewTreeNode(8)
 
-	t.root = p1
+	t.Root = p1
 	p1.left = p2
 	p1.right = p3
 	p2.left = p4
@@ -50,7 +50,7 @@ func InitTree() *Tree {
 }
 
 func (t *Tree) PreOrder() []interface{} {
-	root := t.root
+	root := t.Root
 	if root == nil {
 		return nil
 	}
@@ -76,7 +76,7 @@ func (t *Tree) PreOrder() []interface{} {
 }
 
 func (t *Tree) InOrder() []interface{} {
-	root := t.root
+	root := t.Root
 	if root == nil {
 		return nil
 	}
@@ -102,7 +102,7 @@ func (t *Tree) InOrder() []interface{} {
 }
 
 func (t *Tree) PostOrder() []interface{} {
-	root := t.root
+	root := t.Root
 	if root == nil {
 		return nil
 	}
@@ -157,4 +157,34 @@ func IsSame(n1 *TreeNode, n2 *TreeNode) bool {
 		return false
 	}
 	return IsSame(n1.left, n2.left) && IsSame(n1.right, n2.right)
+}
+
+func Mirror(n *TreeNode) *TreeNode {
+	if n == nil {
+		return nil
+	}
+
+	tmp := n.left
+	n.left = Mirror(n.right)
+	n.right = Mirror(tmp)
+	return n
+}
+
+func IsSymmetric(t *Tree) bool {
+	if t == nil || t.Root == nil {
+		return false
+	}
+	return IsSymmetricCore(t.Root.left, t.Root.right)
+}
+
+func IsSymmetricCore(n1 *TreeNode, n2 *TreeNode) bool {
+	if n1 == nil && n2 == nil {
+		return true
+	} else if n1 == nil || n2 == nil {
+		return false
+	}
+	if n1.data != n2.data {
+		return false
+	}
+	return IsSymmetricCore(n1.left, n2.right) && IsSymmetricCore(n1.right, n2.left)
 }
