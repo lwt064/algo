@@ -219,15 +219,47 @@ func Tree2List(root *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
 	}
+	last := (*TreeNode)(nil)
+	Convert(root, &last)
+
+	cur := root
+	for cur.left != nil {
+		cur = cur.left
+	}
+	return cur
+}
+
+func Convert(root *TreeNode, last **TreeNode) {
+	if root == nil {
+		return
+	}
+	Convert(root.left, last)
+
+	root.left = *last
+	if *last != nil {
+		(*last).right = root
+	}
+
+	*last = root
+
+	Convert(root.right, last)
+}
+
+func Tree2List2(root *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+
 	tail := Tree2ListCore(root.left, true)
 	if tail != nil {
 		tail.right = root
 		root.left = tail
 	}
+
 	head := Tree2ListCore(root.right, false)
 	if head != nil {
-		root.right = head
 		head.left = root
+		root.right = head
 	}
 
 	cur := root
