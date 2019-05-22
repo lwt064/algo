@@ -37,3 +37,68 @@ func GetSeqOfS(s int) {
 		fmt.Println("#")
 	}
 }
+
+func PrintMatrix() {
+	m, n := 8, 6
+	A := make([][]int, m)
+
+	num := 0
+	for i := 0; i < m; i++ {
+		A[i] = make([]int, n)
+		for j := 0; j < n; j++ {
+			num += 1
+			A[i][j] = num
+		}
+	}
+
+	for _, x := range A {
+		fmt.Println(x)
+	}
+
+	k := 1 // k为圈数
+	row, col := 0, 0
+
+	cnt := 0
+	for {
+		cnt = 0
+		for ; col < n-k; col++ {
+			cnt += 1
+			fmt.Printf("%d ", A[row][col])
+		}
+		if cnt == 0 {
+			break
+		}
+
+		cnt = 0
+		for ; row < m-k; row++ {
+			cnt = cnt + 1
+			fmt.Printf("%d ", A[row][col])
+		}
+		if cnt == 0 {
+			break
+		}
+
+		cnt = 0
+		for ; col >= k; col-- {
+			cnt = cnt + 1
+			fmt.Printf("%d ", A[row][col])
+		}
+		if cnt == 0 {
+			break
+		}
+
+		cnt = 0
+		for ; row >= k; row-- {
+			cnt = cnt + 1
+			fmt.Printf("%d ", A[row][col])
+		}
+		if cnt == 0 {
+			break
+		}
+
+		row++
+		col++
+		k = k + 1
+	}
+
+}

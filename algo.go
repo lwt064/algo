@@ -553,6 +553,8 @@ func arrayTest() {
 	array.GetSeqOfS(5)
 	array.GetSeqOfS(100)
 	array.GetSeqOfS(-1)
+
+	array.PrintMatrix()
 }
 
 func main() {
