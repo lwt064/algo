@@ -1,6 +1,7 @@
 package main
 
 import (
+	"algo/array"
 	"algo/backtracing/bag01"
 	"algo/backtracing/nqueen"
 
@@ -547,6 +548,13 @@ func queueTest() {
 	}
 }
 
+func arrayTest() {
+	array.GetSeqOfS(4)
+	array.GetSeqOfS(5)
+	array.GetSeqOfS(100)
+	array.GetSeqOfS(-1)
+}
+
 func main() {
 	// sortTest()
 	// binSearchTest()
@@ -556,7 +564,7 @@ func main() {
 	// linkedlistTest()
 	// skipListTest()
 	// binSarchTreeTest()
-	treeTest()
+	// treeTest()
 	// graphTest()
 	// stringMatchTest()
 	// trieTest()
@@ -564,6 +572,6 @@ func main() {
 	// dcTest()
 	// btTest()
 	// dpTest()
-
 	// queueTest()
+	arrayTest()
 }
