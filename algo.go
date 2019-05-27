@@ -1,6 +1,7 @@
 package main
 
 import (
+	"algo/array"
 	"algo/backtracing/bag01"
 	"algo/backtracing/nqueen"
 
@@ -210,12 +211,26 @@ func cellSplitTest() {
 }
 
 func treeTest() {
-	t := tree.InitTree()
-	fmt.Println(t.PreOrder())
+	{
+		t := tree.InitTree()
+		fmt.Println(t.PreOrder())
 
-	fmt.Println(t.InOrder())
+		fmt.Println(t.InOrder())
 
-	fmt.Println(t.PostOrder())
+		fmt.Println(t.PostOrder())
+
+		tree.Mirror(t.Root)
+		// t.Root = n
+
+		fmt.Println(t.PreOrder())
+	}
+
+	{
+		t := tree.InitSearchTree()
+		head := tree.Tree2List(t.Root)
+		tree.PrintTree2List(head)
+	}
+
 }
 
 func graphTest() {
@@ -533,6 +548,15 @@ func queueTest() {
 	}
 }
 
+func arrayTest() {
+	array.GetSeqOfS(4)
+	array.GetSeqOfS(5)
+	array.GetSeqOfS(100)
+	array.GetSeqOfS(-1)
+
+	array.PrintMatrix()
+}
+
 func main() {
 	sortTest()
 	// binSearchTest()
@@ -550,6 +574,6 @@ func main() {
 	// dcTest()
 	// btTest()
 	// dpTest()
-
-	queueTest()
+	// queueTest()
+	arrayTest()
 }
