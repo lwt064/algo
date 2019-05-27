@@ -51,7 +51,7 @@ func sortTest() {
 
 	fmt.Println("kth: ", cmpsort.SelectK(x, 18))
 
-	// cmpsort.InsertSort(x)
+	cmpsort.InsertSort(x)
 	for _, v := range x {
 		fmt.Println(v)
 	}
@@ -188,7 +188,7 @@ func binSarchTreeTest() {
 	bst.Insert("Soon3", 43)
 
 	x := make([]string, 0)
-	bin_search_tree.PreOrder(bst.Root, &x)
+	bin_search_tree.InOrder(bst.Root, &x)
 	fmt.Println(x)
 
 	fmt.Println("Find: ", bst.Find(41))
@@ -200,7 +200,7 @@ func binSarchTreeTest() {
 	bst.Delete(12)
 
 	x = x[:0]
-	bin_search_tree.PreOrder(bst.Root, &x)
+	bin_search_tree.InOrder(bst.Root, &x)
 	fmt.Println(x)
 }
 
@@ -534,7 +534,7 @@ func queueTest() {
 }
 
 func main() {
-	// sortTest()
+	sortTest()
 	// binSearchTest()
 	// hashMapTest()
 	// arrangeTest()
@@ -550,8 +550,6 @@ func main() {
 	// dcTest()
 	// btTest()
 	// dpTest()
-<<<<<<< HEAD
-=======
+
 	queueTest()
->>>>>>> b06667898552c927574435fb44edaa0adaaa8e4d
 }

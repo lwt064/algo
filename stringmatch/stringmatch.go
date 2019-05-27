@@ -29,7 +29,7 @@ func RKMatch(s string, p string) int {
 	}
 	sHash := getHash(s, 0, len(p))
 	pHash := getHash(p, 0, len(p))
-	if sHash == pHash {
+	if sHash == pHash && isMatch(s, 0, p) {
 		return 0
 	}
 

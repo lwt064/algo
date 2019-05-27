@@ -170,12 +170,12 @@ func (bst *BST) Max() interface{} {
 	return data
 }
 
-func PreOrder(Root *Node, x *[]string) {
+func InOrder(Root *Node, x *[]string) {
 	if Root == nil {
 		return
 	}
-	PreOrder(Root.left, x)
+	InOrder(Root.left, x)
 	*x = append(*x, Root.data.(string))
-	PreOrder(Root.right, x)
+	InOrder(Root.right, x)
 	return
 }

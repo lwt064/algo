@@ -48,10 +48,7 @@ func Prim(g *graph.Graph) []Edge {
 	extendV(s, &unselected, &selected)
 
 	edgeSet := []Edge{}
-	for {
-		if len(unselected) == 0 {
-			break
-		}
+	for len(unselected) > 0 {
 		minDist := MAXDIST
 		edge := Edge{-1, -1, -1}
 		for _, u := range selected {
